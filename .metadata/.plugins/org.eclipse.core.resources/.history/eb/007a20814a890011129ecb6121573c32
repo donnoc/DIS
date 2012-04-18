@@ -104,13 +104,3 @@ public class Main {
 		System.out.println("Makler mit der ID "+m.getId()+" wurde erzeugt.");
 	}
 }
-
-
-
-
-
-
-
-
-
-

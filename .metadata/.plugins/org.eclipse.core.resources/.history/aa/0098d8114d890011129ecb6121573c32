@@ -67,7 +67,7 @@ public class Makler {
 	
 	/**
 	 * Läd eine Liste aller Makler aus der Datenbank
-	 * @return Makler-Array
+	 * @return array
 	 */
 	public static Makler[] load_all_makler() {
 		try	{

@@ -67,7 +67,7 @@ public class Makler {
 	
 	/**
 	 * Läd eine Liste aller Makler aus der Datenbank
-	 * @return Makler-Array
+	 * @return array
 	 */
 	public static Makler[] load_all_makler() {
 		try	{
@@ -83,7 +83,7 @@ public class Makler {
 			
 			if (rs.next()) {
 				Makler ts = new Makler();
-				ts.setId(rs.getInt("id"));
+				ts.setId(rs.getInteger("id"));
 				ts.setName(rs.getString("name"));
 				ts.setAddress(rs.getString("address"));
 				ts.setLogin(rs.getString("login"));

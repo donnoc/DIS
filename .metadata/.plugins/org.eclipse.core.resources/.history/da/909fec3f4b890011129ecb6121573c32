@@ -66,41 +66,6 @@ public class Makler {
 	}
 	
 	/**
-	 * Läd eine Liste aller Makler aus der Datenbank
-	 * @return Makler-Array
-	 */
-	public static Makler[] load_all_makler() {
-		try	{
-			// Hole Verbindung
-			Connection con = DB2ConnectionManager.getInstance().getConnection();
-			
-			// Erzeuge Anfrage
-			String selectSQL = "SELECT * FROM makler";
-			PreparedStatement pstmt = con.prepareStatement(selectSQL);
-			
-			// Führe Anfrage aus
-			ResultSet rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				Makler ts = new Makler();
-				ts.setId(rs.getInt("id"));
-				ts.setName(rs.getString("name"));
-				ts.setAddress(rs.getString("address"));
-				ts.setLogin(rs.getString("login"));
-				ts.setPassword(rs.getString("password"));
-
-				rs.close();
-				pstmt.close();
-				return ts;
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/**
 	 * Lädt einen Makler aus der Datenbank
 	 * @param id ID des zu ladenden Maklers
 	 * @return Makler-Instanz
