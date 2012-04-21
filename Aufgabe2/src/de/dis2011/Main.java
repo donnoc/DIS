@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import de.dis2011.data.Makler;
 import de.dis2011.data.Person;
 import de.dis2011.data.Kaufvertrag;
+import de.dis2011.data.Mietvertrag;
+import de.dis2011.data.Vertrag;
 
 /**
  * Hauptklasse
@@ -115,13 +117,14 @@ public class Main {
 					showContractMenu();
 					break;
 				case OVERVIEW:
-					editMakler();
+					vertragsuebersicht();
 					break;
 				case BACK:
 					return;
 			}
 		}
 	}
+	
 	
 	/**
 	 * Zeigt die Maklerverwaltung
@@ -147,7 +150,7 @@ public class Main {
 					newKaufvertrag();
 					break;
 				case MIETVERTRAG:
-					deleteMakler();
+					newMietvertrag();
 					break;
 				case BACK:
 					return;
@@ -175,6 +178,26 @@ public class Main {
 	}
 	
 	/**
+	 * Legt einen neuen Mietvertrag an
+	 */
+	public static void newMietvertrag() {
+		Mietvertrag m = new Mietvertrag();
+
+		m.setVertragsnummer(FormUtil.readString("Vertragsnummer"));
+		m.setDatum(FormUtil.readString("Datum"));
+		m.setOrt(FormUtil.readString("Ort"));
+		
+		m.setId_wohnung(FormUtil.readInt("ID Wohnung"));
+		m.setId_person(FormUtil.readInt("ID Person"));
+		m.setMietbegin(FormUtil.readInt("Mietbeginn"));
+		m.setDauer(FormUtil.readInt("Dauer"));
+		m.setNebenkosten(FormUtil.readInt("Nebenkosten"));
+		m.save();
+		
+		System.out.println("Mietvertrag mit der ID "+m.getId()+" wurde erzeugt.");
+	}
+	
+	/**
 	 * Legt eine neue Person an, nachdem der Benutzer
 	 * die entprechenden Daten eingegeben hat.
 	 */
@@ -190,10 +213,16 @@ public class Main {
 	}
 	
 	/**
-	 * Zeigt die Liste der Verfügbaren Verträge an
+	 * Übersicht der Verträge
 	 */
-	public static void overviewContract() {
+	public static void vertragsuebersicht() {
+		ArrayList<Vertrag> vetrag_alle = Vertrag.load_all_vertraege();
 		
+		// Liste der Verträge ausgeben
+		System.out.println("Liste der VertragsNr.");
+		for(Vertrag vertrag_single : vetrag_alle){
+			System.out.println("[" + vertrag_single.getId() + "] " + vertrag_single.getVertragsNr());
+		}
 	}
 	
 	/**

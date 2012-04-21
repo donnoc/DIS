@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import de.dis2011.data.DB2ConnectionManager;
 
@@ -48,53 +49,43 @@ public class Vertrag {
 	}
 	
 	/**
-	 * Speichert den Makler in der Datenbank. Ist noch keine ID vergeben
-	 * worden, wird die generierte Id von DB2 geholt und dem Model übergeben.
+	 * Läd eine Liste aller Makler aus der Datenbank
+	 * @return Makler-Array
 	 */
-	public void saveVertrag() {
-		// Hole Verbindung
-		Connection con = DB2ConnectionManager.getInstance().getConnection();
-
-		try {
-			// FC<ge neues Element hinzu, wenn das Objekt noch keine ID hat.
-			if (getId() == -1) {
-				// Achtung, hier wird noch ein Parameter mitgegeben,
-				// damit spC$ter generierte IDs zurC<ckgeliefert werden!
-				String insertSQL = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
-
-				PreparedStatement pstmt = con.prepareStatement(insertSQL,
-						Statement.RETURN_GENERATED_KEYS);
-
-				// Setze Anfrageparameter und fC<hre Anfrage aus
-				pstmt.setString(1, getVertragsNr());
-				pstmt.setString(2, getDatum());
-				pstmt.setString(3, getOrt());
-				pstmt.executeUpdate();
-
-				// Hole die Id des engefC<gten Datensatzes
-				ResultSet rs = pstmt.getGeneratedKeys();
-				if (rs.next()) {
-					setId(rs.getInt(1));
-				}
-
-				rs.close();
-				pstmt.close();
-			} else {
-				// Falls schon eine ID vorhanden ist, mache ein Update...
-				String updateSQL = "UPDATE vertrag SET vertragsnr = ?, datum = ?, ort = ? WHERE id = ?";
-				PreparedStatement pstmt = con.prepareStatement(updateSQL);
-
-				// Setze Anfrage Parameter
-				pstmt.setString(1, getVertragsNr());
-				pstmt.setString(2, getDatum());
-				pstmt.setString(3, getOrt());
-				pstmt.setInt(4, getId());
-				pstmt.executeUpdate();
-
-				pstmt.close();
+	public static ArrayList<Vertrag> load_all_vertraege() {
+		try	{
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+			
+			// Erzeuge Anfrage
+			String selectSQL = "SELECT id, vertragsnr FROM vertrag";
+			PreparedStatement pstmt = con.prepareStatement(selectSQL);
+			
+			// Führe Anfrage aus
+			ResultSet rs = pstmt.executeQuery();
+			
+			// Array für alle Makler (mit id)
+			//Makler all_makler[] = new Makler[2];
+			ArrayList<Vertrag> all_vertraege = new ArrayList<Vertrag>();
+			
+			//int i = 0;
+			while(rs.next()){
+				Vertrag ts = new Vertrag();
+				ts.setId(rs.getInt("id"));
+				ts.setVertragsnummer(rs.getString("vertragsnr"));
+				
+				all_vertraege.add(ts);
+				//all_makler[i] = ts;
+				//i++;
 			}
+			
+			rs.close();
+			pstmt.close();
+			return all_vertraege;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

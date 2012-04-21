@@ -117,19 +117,10 @@ public class Kaufvertrag extends Vertrag{
 				pstmt_kaufvertrag.close();
 			} else {
 				// Falls schon eine ID vorhanden ist, mache ein Update...
-				String updateSQL = "UPDATE kaufvertrag SET id_person = ?, id_haus = ?, id_vertrag = ?, anzahl_raten = ?, ratenzins = ? WHERE id = ?";
-				PreparedStatement pstmt = con.prepareStatement(updateSQL);
-
-				// Setze Anfrage Parameter
-				pstmt.setInt(1, getId_person());
-				pstmt.setInt(2, getId_haus());
-				pstmt.setInt(3, getId());
-				pstmt.setInt(4, getAnzahl_raten());
-				pstmt.setInt(5, getRatenzins());
-				pstmt.setInt(6, getIdKaufvertrag());
-				pstmt.executeUpdate();
-
-				pstmt.close();
+				
+				/*
+				 * Update ist noch nicht vorhanden
+				 */
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
