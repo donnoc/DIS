@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList; // Einbinden der ArrayList aus der java-api
 
 import de.dis2011.data.DB2ConnectionManager;
 
@@ -69,7 +70,7 @@ public class Makler {
 	 * Läd eine Liste aller Makler aus der Datenbank
 	 * @return Makler-Array
 	 */
-	public static Makler[] load_all_makler() {
+	public static ArrayList<Makler> load_all_makler() {
 		try	{
 			// Hole Verbindung
 			Connection con = DB2ConnectionManager.getInstance().getConnection();
@@ -81,24 +82,62 @@ public class Makler {
 			// Führe Anfrage aus
 			ResultSet rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
+			// Array für alle Makler (mit id)
+			//Makler all_makler[] = new Makler[2];
+			ArrayList<Makler> all_makler = new ArrayList<Makler>();
+			
+			//int i = 0;
+			while(rs.next()){
 				Makler ts = new Makler();
 				ts.setId(rs.getInt("id"));
 				ts.setName(rs.getString("name"));
-				ts.setAddress(rs.getString("address"));
+				ts.setAddress(rs.getString("adresse"));
 				ts.setLogin(rs.getString("login"));
 				ts.setPassword(rs.getString("password"));
-
-				rs.close();
-				pstmt.close();
-				return ts;
+				
+				all_makler.add(ts);
+				//all_makler[i] = ts;
+				//i++;
 			}
 			
+			rs.close();
+			pstmt.close();
+			return all_makler;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	/**
+	 * Löscht einen Makler
+	 * @param int die ID einer Maklers
+	 */
+	public static void delete(int id) {
+		try{
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+						
+			// Erzeuge Anfrage
+			String deleteSQL = "DELETE FROM makler WHERE id = ?";
+			PreparedStatement pstmt = con.prepareStatement(deleteSQL, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, id);
+			
+			// Führe Anfrage aus
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			System.out.println("Makler mit der ID " + id + " wurde gelöscht");
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	
 	/**
 	 * Lädt einen Makler aus der Datenbank
@@ -121,7 +160,7 @@ public class Makler {
 				Makler ts = new Makler();
 				ts.setId(id);
 				ts.setName(rs.getString("name"));
-				ts.setAddress(rs.getString("address"));
+				ts.setAddress(rs.getString("adresse"));
 				ts.setLogin(rs.getString("login"));
 				ts.setPassword(rs.getString("password"));
 
@@ -148,7 +187,7 @@ public class Makler {
 			if (getId() == -1) {
 				// Achtung, hier wird noch ein Parameter mitgegeben,
 				// damit spC$ter generierte IDs zurC<ckgeliefert werden!
-				String insertSQL = "INSERT INTO makler(name, adresse, login, passwort) VALUES (?, ?, ?, ?)";
+				String insertSQL = "INSERT INTO makler(name, adresse, login, password) VALUES (?, ?, ?, ?)";
 
 				PreparedStatement pstmt = con.prepareStatement(insertSQL,
 						Statement.RETURN_GENERATED_KEYS);
@@ -170,7 +209,7 @@ public class Makler {
 				pstmt.close();
 			} else {
 				// Falls schon eine ID vorhanden ist, mache ein Update...
-				String updateSQL = "UPDATE makler SET name = ?, adresse = ?, login = ?, passwort = ? WHERE id = ?";
+				String updateSQL = "UPDATE makler SET name = ?, adresse = ?, login = ?, password = ? WHERE id = ?";
 				PreparedStatement pstmt = con.prepareStatement(updateSQL);
 
 				// Setze Anfrage Parameter

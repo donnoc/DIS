@@ -1,0 +1,295 @@
+package de.dis2011;
+
+import java.util.ArrayList;
+
+import de.dis2011.data.Makler;
+import de.dis2011.data.Person;
+import de.dis2011.data.Kaufvertrag;
+
+/**
+ * Hauptklasse
+ */
+public class Main {
+	/**
+	 * Startet die Anwendung
+	 */
+	public static void main(String[] args) {
+		showMainMenu();
+	}
+	
+	/**
+	 * Zeigt das Hauptmenü
+	 */
+	public static void showMainMenu() {
+		//Menüoptionen
+		final int MENU_MAKLER   = 0;
+		final int MENU_CONTRACT = 1;
+		final int QUIT          = 2;
+		
+		//Erzeuge Menü
+		Menu mainMenu = new Menu("Hauptmenü");
+		mainMenu.addEntry("Makler-Verwaltung", MENU_MAKLER);
+		mainMenu.addEntry("Vertragsverwaltung", MENU_CONTRACT);
+		mainMenu.addEntry("Beenden", QUIT);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = mainMenu.show();
+			
+			switch(response) {
+				case MENU_MAKLER:
+					showMaklerMenu();
+					break;
+				case MENU_CONTRACT:
+					showVertragsMenu();
+					break;
+				case QUIT:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Zeigt die Maklerverwaltung
+	 */
+	public static void showMaklerMenu() {
+		//Menüoptionen
+		final int NEW_MAKLER    = 0;
+		final int DELETE_MAKLER = 1;
+		final int EDIT_MAKLER   = 2;
+		final int BACK          = 3;
+		
+		//Maklerverwaltungsmenü
+		Menu maklerMenu = new Menu("Makler-Verwaltung");
+		maklerMenu.addEntry("Neuer Makler", NEW_MAKLER);
+		maklerMenu.addEntry("Makler löschen", DELETE_MAKLER);
+		maklerMenu.addEntry("Makler bearbeiten", EDIT_MAKLER);
+		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = maklerMenu.show();
+			
+			switch(response) {
+				case NEW_MAKLER:
+					newMakler();
+					break;
+				case DELETE_MAKLER:
+					deleteMakler();
+					break;
+				case EDIT_MAKLER:
+					editMakler();
+					break;
+				case BACK:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Zeigt die Maklerverwaltung
+	 */
+	public static void showVertragsMenu() {
+		//Menüoptionen
+		final int NEW_PERSON        = 0;
+		final int CONCLUDE_CONTRACT = 1;
+		final int OVERVIEW          = 2;
+		final int BACK              = 3;
+		
+		//Maklerverwaltungsmenü
+		Menu maklerMenu = new Menu("Vertragsverwaltung");
+		maklerMenu.addEntry("Neue Person", NEW_PERSON);
+		maklerMenu.addEntry("Abschließen", CONCLUDE_CONTRACT);
+		maklerMenu.addEntry("Übersicht", OVERVIEW);
+		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = maklerMenu.show();
+			
+			switch(response) {
+				case NEW_PERSON:
+					newPerson();
+					break;
+				case CONCLUDE_CONTRACT:
+					showContractMenu();
+					break;
+				case OVERVIEW:
+					editMakler();
+					break;
+				case BACK:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Zeigt die Maklerverwaltung
+	 */
+	public static void showContractMenu() {
+		//Menüoptionen
+		final int KAUFVERTRAG = 0;
+		final int MIETVERTRAG = 1;
+		final int BACK        = 2;
+		
+		//Maklerverwaltungsmenü
+		Menu maklerMenu = new Menu("Abschlussverwaltung");
+		maklerMenu.addEntry("Kaufvertrag", KAUFVERTRAG);
+		maklerMenu.addEntry("Mietvertrag", MIETVERTRAG);
+		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = maklerMenu.show();
+			
+			switch(response) {
+				case KAUFVERTRAG:
+					newKaufvertrag();
+					break;
+				case MIETVERTRAG:
+					deleteMakler();
+					break;
+				case BACK:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Legt einen neuen Kaufvertrag an
+	 */
+	public static void newKaufvertrag() {
+		Kaufvertrag k = new Kaufvertrag();
+
+		k.setVertragsnummer(FormUtil.readString("Vertragsnummer"));
+		k.setDatum(FormUtil.readString("Datum"));
+		k.setId_haus(FormUtil.readInt("ID Haus"));
+		k.setId_person(FormUtil.readInt("ID Person"));
+		k.setOrt(FormUtil.readString("Ort"));
+		k.setRatenzins(FormUtil.readInt("Ratenzins"));
+		k.setAnzahl_raten(FormUtil.readInt("Anzahl Raten"));
+	}
+	
+	/**
+	 * Legt eine neue Person an, nachdem der Benutzer
+	 * die entprechenden Daten eingegeben hat.
+	 */
+	public static void newPerson() {
+		Person p = new Person();
+		
+		p.setVorname(FormUtil.readString("Vorname"));
+		p.setNachname(FormUtil.readString("Nachname"));
+		p.setAdresse(FormUtil.readString("Adresse"));
+		p.save();
+		
+		System.out.println("Person mit der ID "+p.getId()+" wurde erzeugt.");
+	}
+	
+	/**
+	 * Zeigt die Liste der Verfügbaren Verträge an
+	 */
+	public static void overviewContract() {
+		
+	}
+	
+	/**
+	 * Legt einen neuen Makler an, nachdem der Benutzer
+	 * die entprechenden Daten eingegeben hat.
+	 */
+	public static void newMakler() {
+		Makler m = new Makler();
+		
+		m.setName(FormUtil.readString("Name"));
+		m.setAddress(FormUtil.readString("Adresse"));
+		m.setLogin(FormUtil.readString("Login"));
+		m.setPassword(FormUtil.readString("Passwort"));
+		m.save();
+		
+		System.out.println("Makler mit der ID "+m.getId()+" wurde erzeugt.");
+	}
+	
+	/**
+	 * Verwaltet einen Makler und lässt seine Daten ändern
+	 */
+	public static void editMakler() {
+		Makler makler_old = new Makler();
+		Makler makler_new = new Makler();
+		
+		System.out.println("Welchen Makler wollen Sie bearbeiten?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Makler> makler_alle = Makler.load_all_makler();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Makler makler_single : makler_alle){
+			System.out.println("[" + makler_single.getId() + "] " + makler_single.getName());
+		}
+		
+		makler_old = Makler.load(FormUtil.readInt("Nr."));
+
+		makler_new.setId(makler_old.getId());
+		
+		System.out.println("Geben Sie den neuen Namen ein:" + makler_old.getName());
+		makler_new.setName(FormUtil.readString("Name"));
+		
+		System.out.println("Geben Sie eine neue Adresse ein: " + makler_old.getAddress());
+		makler_new.setAddress(FormUtil.readString("Adresse"));
+		
+		System.out.println("Geben Sie einen neuen Login ein: " + makler_old.getLogin());
+		makler_new.setLogin(FormUtil.readString("Login"));
+		
+		System.out.println("Geben Sie ein neues Passwort ein: " + makler_old.getPassword());
+		makler_new.setPassword(FormUtil.readString("Passwort"));
+		
+
+		makler_new.save();
+		
+		System.out.println("Makler mit der ID "+makler_new.getId()+" wurde geupdatet.");
+	}
+	
+	/**
+	 * Editiert den Makler
+	 * kann Makler editieren oder löschen
+	 */
+	public static void deleteMakler() {
+		String login_password = "aaa";
+		
+		// Passwortabfrage
+		String password = FormUtil.readString("Bitte Passwort eingeben (" + login_password + ")");
+		
+		//prüfen, ob Passwort richtig ist
+		if( password.equals(login_password)){
+			System.out.println("Welchen Makler wollen Sie löschen?");
+			
+			// läd eine Liste aller AMkler
+			ArrayList<Makler> makler_alle = Makler.load_all_makler();
+			
+			// Liste der Makler ausgeben
+			System.out.println("[0] Abbrechen");
+			for(Makler makler_single : makler_alle){
+				System.out.println("[" + makler_single.getId() + "] " + makler_single.getName());
+			}
+			
+			int id = FormUtil.readInt("Nr.");
+			if(id != 0){
+				Makler.delete(id);
+			}
+			
+		}else{
+			System.out.println("Leider falsch");
+		}
+
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+

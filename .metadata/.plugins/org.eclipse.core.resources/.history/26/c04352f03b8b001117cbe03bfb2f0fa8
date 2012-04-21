@@ -1,0 +1,182 @@
+package de.dis2011;
+
+import java.util.ArrayList;
+
+import de.dis2011.data.Makler;
+
+/**
+ * Hauptklasse
+ */
+public class Main {
+	/**
+	 * Startet die Anwendung
+	 */
+	public static void main(String[] args) {
+		showMainMenu();
+	}
+	
+	/**
+	 * Zeigt das Hauptmenü
+	 */
+	public static void showMainMenu() {
+		//Menüoptionen
+		final int MENU_MAKLER = 0;
+		final int QUIT = 1;
+		
+		//Erzeuge Menü
+		Menu mainMenu = new Menu("Hauptmenü");
+		mainMenu.addEntry("Makler-Verwaltung", MENU_MAKLER);
+		mainMenu.addEntry("Beenden", QUIT);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = mainMenu.show();
+			
+			switch(response) {
+				case MENU_MAKLER:
+					showMaklerMenu();
+					break;
+				case QUIT:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Zeigt die Maklerverwaltung
+	 */
+	public static void showMaklerMenu() {
+		//Menüoptionen
+		final int NEW_MAKLER    = 0;
+		final int DELETE_MAKLER = 1;
+		final int EDIT_MAKLER   = 2;
+		final int BACK          = 3;
+		
+		//Maklerverwaltungsmenü
+		Menu maklerMenu = new Menu("Makler-Verwaltung");
+		maklerMenu.addEntry("Neuer Makler", NEW_MAKLER);
+		maklerMenu.addEntry("Makler löschen", DELETE_MAKLER);
+		maklerMenu.addEntry("Makler bearbeiten", EDIT_MAKLER);
+		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = maklerMenu.show();
+			
+			switch(response) {
+				case NEW_MAKLER:
+					newMakler();
+					break;
+				case DELETE_MAKLER:
+					deleteMakler();
+					break;
+				case EDIT_MAKLER:
+					editMakler();
+					break;
+				case BACK:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * Legt einen neuen Makler an, nachdem der Benutzer
+	 * die entprechenden Daten eingegeben hat.
+	 */
+	public static void newMakler() {
+		Makler m = new Makler();
+		
+		m.setName(FormUtil.readString("Name"));
+		m.setAddress(FormUtil.readString("Adresse"));
+		m.setLogin(FormUtil.readString("Login"));
+		m.setPassword(FormUtil.readString("Passwort"));
+		m.save();
+		
+		System.out.println("Makler mit der ID "+m.getId()+" wurde erzeugt.");
+	}
+	
+	/**
+	 * Legt einen neuen Makler an, nachdem der Benutzer
+	 * die entprechenden Daten eingegeben hat.
+	 */
+	public static void editMakler() {
+		Makler makler_old = new Makler();
+		Makler makler_new = new Makler();
+		
+		System.out.println("Welchen Makler wollen Sie bearbeiten?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Makler> makler_alle = Makler.load_all_makler();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Makler makler_single : makler_alle){
+			System.out.println("[" + makler_single.getId() + "] " + makler_single.getName());
+		}
+		
+		makler_old = Makler.load(FormUtil.readInt("Nr."));
+
+
+		System.out.println("Geben Sie den neuen Namen ein:" + makler_old.getName());
+		makler_old.setName(FormUtil.readString("Name"));
+		
+		System.out.println("Geben Sie eine neue Adresse ein: " + makler_old.getAddress());
+		makler_old.setAddress(FormUtil.readString("Adresse"));
+		
+		System.out.println("Geben Sie einen neuen Login ein: " + makler_old.getLogin());
+		makler_old.setLogin(FormUtil.readString("Login"));
+		
+		System.out.println("Geben Sie ein neues Passwort ein: " + makler_old.getPassword());
+		makler_old.setPassword(FormUtil.readString("Passwort"));
+		
+
+		Makler.save();
+		
+		System.out.println("Makler mit der ID "+m.getId()+" wurde erzeugt.");
+	}
+	
+	/**
+	 * Editiert den Makler
+	 * kann Makler editieren oder löschen
+	 */
+	public static void deleteMakler() {
+		String login_password = "aaa";
+		
+		// Passwortabfrage
+		String password = FormUtil.readString("Bitte Passwort eingeben (" + login_password + ")");
+		
+		//prüfen, ob Passwort richtig ist
+		if( password.equals(login_password)){
+			System.out.println("Welchen Makler wollen Sie löschen?");
+			
+			// läd eine Liste aller AMkler
+			ArrayList<Makler> makler_alle = Makler.load_all_makler();
+			
+			// Liste der Makler ausgeben
+			System.out.println("[0] Abbrechen");
+			for(Makler makler_single : makler_alle){
+				System.out.println("[" + makler_single.getId() + "] " + makler_single.getName());
+			}
+			
+			int id = FormUtil.readInt("Nr.");
+			if(id != 0){
+				Makler.delete(id);
+			}
+			
+		}else{
+			System.out.println("Leider falsch");
+		}
+
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+

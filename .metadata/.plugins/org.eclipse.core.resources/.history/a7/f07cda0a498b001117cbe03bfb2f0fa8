@@ -1,0 +1,67 @@
+package de.dis2011.data;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList; // Einbinden der ArrayList aus der java-api
+
+import de.dis2011.data.DB2ConnectionManager;
+
+public class Kaufvertrag {
+	private int id;
+	private String vertragsnr;
+	private String datum;
+	private String ort;
+	private int id_person;
+	private int id_haus;
+	private int anzahl_raten;
+	private int ratenzins;
+	
+	
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getVertragsNr() {
+		return vertragsnr;
+	}
+	
+	public void setVertragsnummer(String vertragsnr) {
+		this.vertragsnr = vertragsnr;
+	}
+	
+	public String getDatum() {
+		return datum;
+	}
+	
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
+	
+	public String getOrt() {
+		return ort;
+	}
+	
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+	
+	public int getId_person() {
+		return id_person;
+	}
+	
+	public void setId_person(int id_person) {
+		this.id_person = id_person;
+	}
+	
+
+	
+	
+}

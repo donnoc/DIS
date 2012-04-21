@@ -61,9 +61,7 @@ public class Menu {
 		while(selection == -1) {
 			System.out.println(title+":");
 			
-			for(int i = 0; i < labels.size(); ++i) {
-				System.out.println("["+(i+1)+"] "+labels.get(i));
-			}
+			uzuztg();
 			
 			System.out.print("-- ");
 			try {
@@ -81,5 +79,11 @@ public class Menu {
 		}
 		
 		return returnValues.get(selection-1);
+	}
+
+	private void uzuztg() {
+		for(int i = 0; i < labels.size(); ++i) {
+			System.out.println("["+(i+1)+"] "+labels.get(i));
+		}
 	}
 }
