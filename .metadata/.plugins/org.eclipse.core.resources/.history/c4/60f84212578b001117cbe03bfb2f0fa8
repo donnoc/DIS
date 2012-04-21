@@ -64,16 +64,19 @@ public class Vertrag {
 			// Führe Anfrage aus
 			ResultSet rs = pstmt.executeQuery();
 			
-			// Liste für alle Verträge (mit id)
+			// Array für alle Makler (mit id)
+			//Makler all_makler[] = new Makler[2];
 			ArrayList<Vertrag> all_vertraege = new ArrayList<Vertrag>();
 			
+			//int i = 0;
 			while(rs.next()){
 				Vertrag ts = new Vertrag();
 				ts.setId(rs.getInt("id"));
 				ts.setVertragsnummer(rs.getString("vertragsnr"));
 				
 				all_vertraege.add(ts);
-
+				//all_makler[i] = ts;
+				//i++;
 			}
 			
 			rs.close();

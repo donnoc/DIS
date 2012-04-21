@@ -67,6 +67,7 @@ public class Vertrag {
 			// Liste fŸr alle VertrŠge (mit id)
 			ArrayList<Vertrag> all_vertraege = new ArrayList<Vertrag>();
 			
+			//int i = 0;
 			while(rs.next()){
 				Vertrag ts = new Vertrag();
 				ts.setId(rs.getInt("id"));
