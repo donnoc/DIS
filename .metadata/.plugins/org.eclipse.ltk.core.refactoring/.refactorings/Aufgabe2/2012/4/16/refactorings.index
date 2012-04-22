@@ -8,3 +8,6 @@
 1334967637042	Rename type 'Vertrag'
 1334967667232	Rename type 'Mietvertrag'
 1334969976886	Rename method 'getId'
+1335111839854	Move compilation unit
+1335111967439	Copy package
+1335111979043	Delete element

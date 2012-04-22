@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 import de.dis2011.data.Makler;
 import de.dis2011.data.Person;
-import de.dis2011.data.Kaufvertrag;
-import de.dis2011.data.Mietvertrag;
-import de.dis2011.data.Vertrag;
+import de.dis2011.data.vertrag.Kaufvertrag;
+import de.dis2011.data.vertrag.Mietvertrag;
+import de.dis2011.data.vertrag.Vertrag;
 
 /**
  * Hauptklasse
  */
 public class Main {
+	
 	/**
 	 * Startet die Anwendung
 	 */
@@ -113,24 +114,127 @@ public class Main {
 		maklerMenu.addEntry("Immobile bearbeiten", EDIT_IMMOBIL);
 		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
 		
-		//Verarbeite Eingabe
-		while(true) {
-			int response = maklerMenu.show();
+		
+		if(maklerLogin()){
+			System.out.println("Sie wurden eingeloggt");
 			
-			switch(response) {
-				case NEW_IMMOBIL:
-					newImmobile();
-					break;
-				case DELETE_IMMOBIL:
-					deleteImmobile();
-					break;
-				case EDIT_IMMOBIL:
-					editImmobile();
-					break;
-				case BACK:
-					return;
+			while(true) {
+				int response = maklerMenu.show();
+				
+				switch(response) {
+					case NEW_IMMOBIL:
+						showNewImmobile();
+						break;
+					case DELETE_IMMOBIL:
+						showEditImmobile();
+						break;
+					case EDIT_IMMOBIL:
+						showDeleteImmobile();
+						break;
+					case BACK:
+						return;
+				}
 			}
+		}else{
+			System.out.println("leider falsches Passwort");
 		}
+
+	}
+	
+	/**
+	 * MENU > Neue Immobilie
+	 */
+	public static void showNewImmobile() {
+		//Menüoptionen
+				final int NEW_HAUS    = 0;
+				final int NEW_WOHNUNG = 1;
+				final int BACK        = 2;
+				
+				//Maklerverwaltungsmenü
+				Menu maklerMenu = new Menu("Neue Immobilie");
+				maklerMenu.addEntry("Neues Haus", NEW_HAUS);
+				maklerMenu.addEntry("Neue Wohnung", NEW_WOHNUNG);
+				maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+				
+				//Verarbeite Eingabe
+				while(true) {
+					int response = maklerMenu.show();
+					
+					switch(response) {
+						case NEW_HAUS:
+							newHaus();
+							break;
+						case NEW_WOHNUNG:
+							newWohnung();
+							break;
+						case BACK:
+							return;
+					}
+				}
+	}
+	
+	/**
+	 * MENU > Immobilie bearbeiten
+	 */
+	public static void showEditImmobile() {
+		//Menüoptionen
+				final int EDIT_HAUS    = 0;
+				final int EDIT_WOHNUNG = 1;
+				final int BACK        = 2;
+				
+				//Maklerverwaltungsmenü
+				Menu maklerMenu = new Menu("Immobilie Bearbeiten");
+				maklerMenu.addEntry("Neues Haus", EDIT_HAUS);
+				maklerMenu.addEntry("Neue Wohnung", EDIT_WOHNUNG);
+				maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+				
+				//Verarbeite Eingabe
+				while(true) {
+					int response = maklerMenu.show();
+					
+					switch(response) {
+						case EDIT_HAUS:
+							editHaus();
+							break;
+						case EDIT_WOHNUNG:
+							editWohnung();
+							break;
+						case BACK:
+							return;
+					}
+				}
+	}
+	
+	/**
+	 * MENU > Immobilie löschen
+	 */
+	public static void showDeleteImmobile() {
+		//Menüoptionen
+				final int DELETE_HAUS    = 0;
+				final int DELETE_WOHNUNG = 1;
+				final int BACK           = 2;
+				
+				//Maklerverwaltungsmenü
+				Menu maklerMenu = new Menu("Immobilie Bearbeiten");
+				maklerMenu.addEntry("Neues Haus", DELETE_HAUS);
+				maklerMenu.addEntry("Neue Wohnung", DELETE_WOHNUNG);
+				maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+				
+				//Verarbeite Eingabe
+				while(true) {
+					int response = maklerMenu.show();
+					
+					switch(response) {
+						case DELETE_HAUS:
+							deleteHaus();
+							break;
+						case DELETE_WOHNUNG:
+							deleteWohnung();
+							break;
+						case BACK:
+							return;
+					}
+				}
 	}
 	
 	/**
@@ -172,7 +276,7 @@ public class Main {
 	}
 	
 	/**
-	 * MENUE
+	 * MENUE > Vertragsverwaltung
 	 * Zeigt die Vertragsmodus
 	 */
 	public static void showContractMenu() {
@@ -203,6 +307,18 @@ public class Main {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	/**
+	 * Hier beginnen die Funktionen 
+	 */
+	
+	
+	
+	
 	
 	/**
 	 * Legt einen neuen Kaufvertrag an
@@ -371,17 +487,58 @@ public class Main {
 		
 	}
 
-	public static void editImmobile() {		
+	
+	public static boolean maklerLogin(){
+	
+		String eingabe_login = FormUtil.readString("Bitte login eingeben");
+		String eingabe_password = FormUtil.readString("Bitte password eingeben");
+		
+		Makler m = Makler.load_from_login(eingabe_login);
+		
+		System.out.println(m.getName());
+		System.out.println(m.getAddress());
+		System.out.println(m.getLogin());
+		System.out.println(m.getPassword());
+		
+		/** ToDo #####################################################################################################################################
+		 * ###########################################################################################################################################
+		 * 
+		 * Der vergleich geht nicht obwohl das Passwort wirhctig ist
+		 * 
+		 */
+		String user_pass = m.getPassword();
+		if( user_pass.equals(eingabe_password) ) {
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+	
+	public static void newHaus() {		
 		System.out.println("noch nicht vorhanden");
 	}
 	
-	public static void newImmobile() {
+	public static void newWohnung() {
 		System.out.println("noch nicht vorhanden");
 	}
 	
-	public static void deleteImmobile() {
+	public static void editHaus() {		
 		System.out.println("noch nicht vorhanden");
 	}
+	
+	public static void editWohnung() {
+		System.out.println("noch nicht vorhanden");
+	}
+	
+	public static void deleteHaus() {		
+		System.out.println("noch nicht vorhanden");
+	}
+	
+	public static void deleteWohnung() {
+		System.out.println("noch nicht vorhanden");
+	}
+	
 
 }
 

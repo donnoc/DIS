@@ -1,0 +1,21 @@
+package de.dis2011.data.immobilien;
+
+public class Wohnung extends Immobilie{
+	private int id = -1;
+	private int id_immobilien;
+	private int stockwerk;
+	private int mietpreis;
+	private int zimmer;
+	private int balkon;
+	private int ebk;
+	
+	public int getIdWohnung(){
+		return id;
+	}
+	
+	public void setIdWohnung(int id){
+		this.id = id;
+	}
+	
+	
+}
