@@ -89,13 +89,13 @@ public class Vertrag {
 		return null;
 	}
 
-	public void save_vertrag(){
+	public static void save_vertrag(){
 		// Hole Verbindung
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
 
 		try {
 			// FC<ge neues Element hinzu, wenn das Objekt noch keine ID hat.
-			if (getId() == -1) {
+			if (getIdVertrag() == -1) {
 				
 				/*
 				 * Speichere den Vertrag

@@ -89,46 +89,37 @@ public class Vertrag {
 		return null;
 	}
 
-	public void save_vertrag(){
-		// Hole Verbindung
-		Connection con = DB2ConnectionManager.getInstance().getConnection();
+	public static void save_vertrag(){
+		/*
+		 * Speichere den Vertrag
+		 */
+		String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
+		
+		//System.out.println("1 - bis hier hin funktioniert es");
 
-		try {
-			// FC<ge neues Element hinzu, wenn das Objekt noch keine ID hat.
-			if (getId() == -1) {
-				
-				/*
-				 * Speichere den Vertrag
-				 */
-				String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
-				
-				//System.out.println("1 - bis hier hin funktioniert es");
-					PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
-							Statement.RETURN_GENERATED_KEYS);
-						
-				// Setze Anfrageparameter und fC<hre Anfrage aus
-				pstmt_vertrag.setString(1, getVertragsNr());
-				pstmt_vertrag.setString(2, getDatum());
-				pstmt_vertrag.setString(3, getOrt());
-				pstmt_vertrag.executeUpdate();
-						
-				//System.out.println("2 - bis hier hin funktioniert es");
-						
-				// Hole die Id des engefC<gten Datensatzes
-				ResultSet rs_vertrag = pstmt_vertrag.getGeneratedKeys();
-				if (rs_vertrag.next()) {
-					setId(rs_vertrag.getInt(1));
-				}
-						
-				//System.out.println("3 - bis hier hin funktioniert es");
-						
-				rs_vertrag.close();
-				pstmt_vertrag.close();
-						
-				//System.out.println("4 - bis hier hin funktioniert es");
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}	
+		PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
+				Statement.RETURN_GENERATED_KEYS);
+		
+		// Setze Anfrageparameter und fC<hre Anfrage aus
+		pstmt_vertrag.setString(1, getVertragsNr());
+		pstmt_vertrag.setString(2, getDatum());
+		pstmt_vertrag.setString(3, getOrt());
+		pstmt_vertrag.executeUpdate();
+		
+		//System.out.println("2 - bis hier hin funktioniert es");
+		
+		// Hole die Id des engefC<gten Datensatzes
+		ResultSet rs_vertrag = pstmt_vertrag.getGeneratedKeys();
+		if (rs_vertrag.next()) {
+			setId(rs_vertrag.getInt(1));
+		}
+		
+		//System.out.println("3 - bis hier hin funktioniert es");
+		
+		rs_vertrag.close();
+		pstmt_vertrag.close();
+		
+		//System.out.println("4 - bis hier hin funktioniert es");
+		
 	}
 }

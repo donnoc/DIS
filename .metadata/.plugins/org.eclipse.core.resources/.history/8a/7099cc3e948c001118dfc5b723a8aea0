@@ -89,7 +89,7 @@ public class Vertrag {
 		return null;
 	}
 
-	public void save_vertrag(){
+	public static void save_vertrag(){
 		// Hole Verbindung
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
 

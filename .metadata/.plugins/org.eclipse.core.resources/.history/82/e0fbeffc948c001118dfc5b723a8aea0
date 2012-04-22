@@ -70,8 +70,26 @@ public class Kaufvertrag extends Vertrag{
 				
 				/*
 				 * Speichere den Vertrag
-				 */			
-				save_vertrag();
+				 */
+				String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
+				
+				PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
+						Statement.RETURN_GENERATED_KEYS);
+				
+				// Setze Anfrageparameter und fC<hre Anfrage aus
+				pstmt_vertrag.setString(1, getVertragsNr());
+				pstmt_vertrag.setString(2, getDatum());
+				pstmt_vertrag.setString(3, getOrt());
+				pstmt_vertrag.executeUpdate();
+				
+				// Hole die Id des engefC<gten Datensatzes
+				ResultSet rs_vertrag = pstmt_vertrag.getGeneratedKeys();
+				if (rs_vertrag.next()) {
+					setId(rs_vertrag.getInt(1));
+				}
+				
+				rs_vertrag.close();
+				pstmt_vertrag.close();
 				
 				
 				/*
@@ -92,7 +110,7 @@ public class Kaufvertrag extends Vertrag{
 				// Hole die Id des engefC<gten Datensatzes
 				ResultSet rs_kaufvertrag = pstmt_kaufvertrag.getGeneratedKeys();
 				if (rs_kaufvertrag.next()) {
-					setIdKaufvertrag(rs_kaufvertrag.getInt(1));
+					setId(rs_kaufvertrag.getInt(1));
 				}
 				
 				rs_kaufvertrag.close();

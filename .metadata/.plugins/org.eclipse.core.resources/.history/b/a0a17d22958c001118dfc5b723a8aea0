@@ -68,9 +68,30 @@ public class Kaufvertrag extends Vertrag{
 			// FC<ge neues Element hinzu, wenn das Objekt noch keine ID hat.
 			if (getIdKaufvertrag() == -1) {
 				
-				/*
-				 * Speichere den Vertrag
-				 */			
+//				/*
+//				 * Speichere den Vertrag
+//				 */
+//				String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
+//				
+//				PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
+//						Statement.RETURN_GENERATED_KEYS);
+//				
+//				// Setze Anfrageparameter und fC<hre Anfrage aus
+//				pstmt_vertrag.setString(1, getVertragsNr());
+//				pstmt_vertrag.setString(2, getDatum());
+//				pstmt_vertrag.setString(3, getOrt());
+//				pstmt_vertrag.executeUpdate();
+//				
+//				// Hole die Id des engefC<gten Datensatzes
+//				ResultSet rs_vertrag = pstmt_vertrag.getGeneratedKeys();
+//				if (rs_vertrag.next()) {
+//					setId(rs_vertrag.getInt(1));
+//				}
+//				
+//				rs_vertrag.close();
+//				pstmt_vertrag.close();
+//				
+				
 				save_vertrag();
 				
 				

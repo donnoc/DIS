@@ -10,11 +10,14 @@ import java.util.ArrayList;
 
 import de.dis2011.data.DB2ConnectionManager;
 
-public class Vertrag {
+public class Immobilie {
 	private int id = -1;
-	private String vertragsnr;
-	private String datum;
+	private int id_makler;
 	private String ort;
+	private String plz;
+	private String strasse;
+	private String haus_nr;
+	private int flaeche;
 	
 
 	public int getId() {
@@ -25,20 +28,12 @@ public class Vertrag {
 		this.id = id;
 	}
 	
-	public String getVertragsNr() {
-		return vertragsnr;
+	public int getId_makler() {
+		return id_makler;
 	}
 	
-	public void setVertragsnummer(String vertragsnr) {
-		this.vertragsnr = vertragsnr;
-	}
-	
-	public String getDatum() {
-		return datum;
-	}
-	
-	public void setDatum(String datum) {
-		this.datum = datum;
+	public void setId_makler(int id_makler) {
+		this.id_makler = id_makler;
 	}
 	
 	public String getOrt() {
@@ -49,39 +44,74 @@ public class Vertrag {
 		this.ort = ort;
 	}
 	
+	public String getPlz() {
+		return plz;
+	}
+	
+	public void setPlz(String plz) {
+		this.plz = plz;
+	}
+	
+	public String getStrasse() {
+		return strasse;
+	}
+	
+	public void setStrasse(String strasse) {
+		this.strasse = strasse;
+	}
+	
+	public String getHaus_nr() {
+		return haus_nr;
+	}
+	
+	public void setHaus_nr(String haus_nr) {
+		this.haus_nr = haus_nr;
+	}
+	
+	public int getFlaeche() {
+		return flaeche;
+	}
+	
+	public void setFlaeche(int flaeche) {
+		this.flaeche = flaeche;
+	}
+	
 	/**
 	 * Läd eine Liste aller Makler aus der Datenbank
 	 * @return Makler-Array
 	 */
-	public static ArrayList<Vertrag> load_all_vertraege() {
+	public static ArrayList<Immobilie> load_all_immobilien() {
 		try	{
 			// Hole Verbindung
 			Connection con = DB2ConnectionManager.getInstance().getConnection();
 			
 			// Erzeuge Anfrage
-			String selectSQL = "SELECT id, vertragsnr, datum, ort FROM vertrag";
+			String selectSQL = "SELECT id, strasse, haus_nr,  FROM immobilien";
 			PreparedStatement pstmt = con.prepareStatement(selectSQL);
 			
 			// Führe Anfrage aus
 			ResultSet rs = pstmt.executeQuery();
 			
 			// Liste für alle Verträge (mit id)
-			ArrayList<Vertrag> all_vertraege = new ArrayList<Vertrag>();
+			ArrayList<Immobilie> all_immobilien = new ArrayList<Immobilie>();
 			
 			while(rs.next()){
-				Vertrag ts = new Vertrag();
+				Immobilie ts = new Immobilie();
 				ts.setId(rs.getInt("id"));
-				ts.setVertragsnummer(rs.getString("vertragsnr"));
-				ts.setDatum(rs.getString("datum"));
+				ts.setId_makler(rs.getInt("id_makler"));
 				ts.setOrt(rs.getString("ort"));
+				ts.setPlz(rs.getString("plz"));
+				ts.setStrasse(rs.getString("strasse"));
+				ts.setHaus_nr(rs.getString("haus_nr"));
+				ts.setFlaeche(rs.getInt("flaeche"));
 				
-				all_vertraege.add(ts);
+				all_immobilien.add(ts);
 
 			}
 			
 			rs.close();
 			pstmt.close();
-			return all_vertraege;
+			return all_immobilien;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,7 +119,8 @@ public class Vertrag {
 		return null;
 	}
 
-	public void save_vertrag(){
+
+	public void save_immobilie(){
 		// Hole Verbindung
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
 
@@ -100,7 +131,7 @@ public class Vertrag {
 				/*
 				 * Speichere den Vertrag
 				 */
-				String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
+				String insertSQL_vertrag = "INSERT INTO immobilien(id_makler, ort, plz, strasse, haus_nr, flaeche) VALUES (?, ?, ?, ?, ?, ?)";
 				
 				//System.out.println("1 - bis hier hin funktioniert es");
 					PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
