@@ -20,18 +20,21 @@ public class Main {
 	}
 	
 	/**
+	 * MENUE: HAUPT
 	 * Zeigt das Hauptmenü
 	 */
 	public static void showMainMenu() {
 		//Menüoptionen
 		final int MENU_MAKLER   = 0;
-		final int MENU_CONTRACT = 1;
-		final int QUIT          = 2;
+		final int MENU_IMMOBIL  = 1;
+		final int MENU_CONTRACT = 2;
+		final int QUIT          = 3;
 		
 		//Erzeuge Menü
 		Menu mainMenu = new Menu("Hauptmenü");
 		mainMenu.addEntry("Makler-Verwaltung", MENU_MAKLER);
-		mainMenu.addEntry("Vertragsverwaltung", MENU_CONTRACT);
+		mainMenu.addEntry("Immobilien-Verwaltung", MENU_IMMOBIL);
+		mainMenu.addEntry("Vertragsmodus", MENU_CONTRACT);
 		mainMenu.addEntry("Beenden", QUIT);
 		
 		//Verarbeite Eingabe
@@ -41,6 +44,9 @@ public class Main {
 			switch(response) {
 				case MENU_MAKLER:
 					showMaklerMenu();
+					break;
+				case MENU_IMMOBIL:
+					showImmobilienMenu();
 					break;
 				case MENU_CONTRACT:
 					showVertragsMenu();
@@ -52,6 +58,7 @@ public class Main {
 	}
 	
 	/**
+	 * MENUE
 	 * Zeigt die Maklerverwaltung
 	 */
 	public static void showMaklerMenu() {
@@ -89,6 +96,45 @@ public class Main {
 	}
 	
 	/**
+	 * MENUE
+	 * Zeigt die Immobilenverwaltung
+	 */
+	public static void showImmobilienMenu() {
+		//Menüoptionen
+		final int NEW_IMMOBIL    = 0;
+		final int DELETE_IMMOBIL = 1;
+		final int EDIT_IMMOBIL   = 2;
+		final int BACK          = 3;
+		
+		//Maklerverwaltungsmenü
+		Menu maklerMenu = new Menu("Immobilien-Verwaltung");
+		maklerMenu.addEntry("Neue Immobile", NEW_IMMOBIL);
+		maklerMenu.addEntry("Immobile löschen", DELETE_IMMOBIL);
+		maklerMenu.addEntry("Immobile bearbeiten", EDIT_IMMOBIL);
+		maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		
+		//Verarbeite Eingabe
+		while(true) {
+			int response = maklerMenu.show();
+			
+			switch(response) {
+				case NEW_IMMOBIL:
+					newImmobile();
+					break;
+				case DELETE_IMMOBIL:
+					deleteImmobile();
+					break;
+				case EDIT_IMMOBIL:
+					editImmobile();
+					break;
+				case BACK:
+					return;
+			}
+		}
+	}
+	
+	/**
+	 * MENUE
 	 * Zeigt die Maklerverwaltung
 	 */
 	public static void showVertragsMenu() {
@@ -125,9 +171,9 @@ public class Main {
 		}
 	}
 	
-	
 	/**
-	 * Zeigt die Maklerverwaltung
+	 * MENUE
+	 * Zeigt die Vertragsmodus
 	 */
 	public static void showContractMenu() {
 		//Menüoptionen
@@ -259,26 +305,35 @@ public class Main {
 			System.out.println("[" + makler_single.getId() + "] " + makler_single.getName());
 		}
 		
-		makler_old = Makler.load(FormUtil.readInt("Nr."));
+		int wahl = FormUtil.readInt("Nr.");
+		
+		if(wahl != 0){
+			makler_old = Makler.load(wahl);
 
-		makler_new.setId(makler_old.getId());
-		
-		System.out.println("Geben Sie den neuen Namen ein:" + makler_old.getName());
-		makler_new.setName(FormUtil.readString("Name"));
-		
-		System.out.println("Geben Sie eine neue Adresse ein: " + makler_old.getAddress());
-		makler_new.setAddress(FormUtil.readString("Adresse"));
-		
-		System.out.println("Geben Sie einen neuen Login ein: " + makler_old.getLogin());
-		makler_new.setLogin(FormUtil.readString("Login"));
-		
-		System.out.println("Geben Sie ein neues Passwort ein: " + makler_old.getPassword());
-		makler_new.setPassword(FormUtil.readString("Passwort"));
-		
+			makler_new.setId(makler_old.getId());
+			
+			System.out.println("Geben Sie den neuen Namen ein:" + makler_old.getName());
+			makler_new.setName(FormUtil.readString("Name"));
+			
+			System.out.println("Geben Sie eine neue Adresse ein: " + makler_old.getAddress());
+			makler_new.setAddress(FormUtil.readString("Adresse"));
+			
+			System.out.println("Geben Sie einen neuen Login ein: " + makler_old.getLogin());
+			makler_new.setLogin(FormUtil.readString("Login"));
+			
+			System.out.println("Geben Sie ein neues Passwort ein: " + makler_old.getPassword());
+			makler_new.setPassword(FormUtil.readString("Passwort"));
+			
 
-		makler_new.save();
+			makler_new.save();
+			
+			System.out.println("Makler mit der ID "+makler_new.getId()+" wurde geupdatet.");
+		}else {
+			System.out.println("Kein Makler wurde bearbeitet");
+		}
 		
-		System.out.println("Makler mit der ID "+makler_new.getId()+" wurde geupdatet.");
+		
+		
 	}
 	
 	/**
@@ -315,6 +370,19 @@ public class Main {
 
 		
 	}
+
+	public static void editImmobile() {		
+		System.out.println("noch nicht vorhanden");
+	}
+	
+	public static void newImmobile() {
+		System.out.println("noch nicht vorhanden");
+	}
+	
+	public static void deleteImmobile() {
+		System.out.println("noch nicht vorhanden");
+	}
+
 }
 
 

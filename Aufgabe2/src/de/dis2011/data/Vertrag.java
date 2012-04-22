@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.util.ArrayList;
 
 import de.dis2011.data.DB2ConnectionManager;
@@ -58,7 +58,7 @@ public class Vertrag {
 			Connection con = DB2ConnectionManager.getInstance().getConnection();
 			
 			// Erzeuge Anfrage
-			String selectSQL = "SELECT id, vertragsnr FROM vertrag";
+			String selectSQL = "SELECT id, vertragsnr, datum, ort FROM vertrag";
 			PreparedStatement pstmt = con.prepareStatement(selectSQL);
 			
 			// FŸhre Anfrage aus
@@ -71,6 +71,8 @@ public class Vertrag {
 				Vertrag ts = new Vertrag();
 				ts.setId(rs.getInt("id"));
 				ts.setVertragsnummer(rs.getString("vertragsnr"));
+				ts.setDatum(rs.getString("datum"));
+				ts.setOrt(rs.getString("ort"));
 				
 				all_vertraege.add(ts);
 
@@ -84,5 +86,9 @@ public class Vertrag {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void save_vertrag(){
+		
 	}
 }

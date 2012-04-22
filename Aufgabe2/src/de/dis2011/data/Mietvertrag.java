@@ -67,7 +67,7 @@ public class Mietvertrag extends Vertrag{
 	}
 	
 	/**
-	 * Speichert den Kaufvertrag
+	 * Speichert den Mietvertrag
 	 */
 	public void save() {
 		// Hole Verbindung
@@ -82,6 +82,8 @@ public class Mietvertrag extends Vertrag{
 				 */
 				String insertSQL_vertrag = "INSERT INTO vertrag(vertragsnr, datum, ort) VALUES (?, ?, ?)";
 				
+				//System.out.println("1 - bis hier hin funktioniert es");
+
 				PreparedStatement pstmt_vertrag = con.prepareStatement(insertSQL_vertrag,
 						Statement.RETURN_GENERATED_KEYS);
 				
@@ -91,15 +93,20 @@ public class Mietvertrag extends Vertrag{
 				pstmt_vertrag.setString(3, getOrt());
 				pstmt_vertrag.executeUpdate();
 				
+				//System.out.println("2 - bis hier hin funktioniert es");
+				
 				// Hole die Id des engefC<gten Datensatzes
 				ResultSet rs_vertrag = pstmt_vertrag.getGeneratedKeys();
 				if (rs_vertrag.next()) {
 					setId(rs_vertrag.getInt(1));
 				}
 				
+				//System.out.println("3 - bis hier hin funktioniert es");
+				
 				rs_vertrag.close();
 				pstmt_vertrag.close();
 				
+				//System.out.println("4 - bis hier hin funktioniert es");
 				
 				/*
 				 * Speichere den mietvertrag
@@ -108,15 +115,20 @@ public class Mietvertrag extends Vertrag{
 				
 				PreparedStatement pstmt_mietvertrag = con.prepareStatement(insertSQL_mietvertrag,
 						Statement.RETURN_GENERATED_KEYS);
-
+				
+				//System.out.println("5 - bis hier hin funktioniert es");
+				//System.out.println(getId_person()+"-"+getId_wohnung()+"-"+getId()+"-"+getMietbegin()+"-"+getMietbegin()+"-"+getDauer()+"-"+getNebenkosten());
+				
 				pstmt_mietvertrag.setInt(1, getId_person());
 				pstmt_mietvertrag.setInt(2, getId_wohnung());
 				pstmt_mietvertrag.setInt(3, getId());
 				pstmt_mietvertrag.setInt(4, getMietbegin());
 				pstmt_mietvertrag.setInt(5, getDauer());
-				pstmt_mietvertrag.setInt(5, getNebenkosten());
+				pstmt_mietvertrag.setInt(6, getNebenkosten());
 				pstmt_mietvertrag.executeUpdate();
 
+				//System.out.println("6 - bis hier hin funktioniert es");
+				
 				// Hole die Id des engefC<gten Datensatzes
 				ResultSet rs_mietvertrag = pstmt_mietvertrag.getGeneratedKeys();
 				if (rs_mietvertrag.next()) {
