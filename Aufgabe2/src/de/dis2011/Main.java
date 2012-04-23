@@ -7,6 +7,8 @@ import de.dis2011.data.Person;
 import de.dis2011.data.vertrag.Kaufvertrag;
 import de.dis2011.data.vertrag.Mietvertrag;
 import de.dis2011.data.vertrag.Vertrag;
+import de.dis2011.data.immobilien.Wohnung;
+import de.dis2011.data.immobilien.Haus;
 
 /**
  * Hauptklasse
@@ -116,7 +118,7 @@ public class Main {
 		
 		
 		if(maklerLogin()){
-			System.out.println("Sie wurden eingeloggt");
+			System.err.println("Sie wurden eingeloggt");
 			
 			while(true) {
 				int response = maklerMenu.show();
@@ -126,17 +128,17 @@ public class Main {
 						showNewImmobile();
 						break;
 					case DELETE_IMMOBIL:
-						showEditImmobile();
+						showDeleteImmobile();
 						break;
 					case EDIT_IMMOBIL:
-						showDeleteImmobile();
+						showEditImmobile();
 						break;
 					case BACK:
 						return;
 				}
 			}
 		}else{
-			System.out.println("leider falsches Passwort");
+			System.err.println("leider falsches Passwort");
 		}
 
 	}
@@ -184,8 +186,8 @@ public class Main {
 				
 				//Maklerverwaltungsmenü
 				Menu maklerMenu = new Menu("Immobilie Bearbeiten");
-				maklerMenu.addEntry("Neues Haus", EDIT_HAUS);
-				maklerMenu.addEntry("Neue Wohnung", EDIT_WOHNUNG);
+				maklerMenu.addEntry("Haus bearbeiten", EDIT_HAUS);
+				maklerMenu.addEntry("Wohnung bearbeiten", EDIT_WOHNUNG);
 				maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
 				
 				//Verarbeite Eingabe
@@ -216,8 +218,8 @@ public class Main {
 				
 				//Maklerverwaltungsmenü
 				Menu maklerMenu = new Menu("Immobilie Bearbeiten");
-				maklerMenu.addEntry("Neues Haus", DELETE_HAUS);
-				maklerMenu.addEntry("Neue Wohnung", DELETE_WOHNUNG);
+				maklerMenu.addEntry("Haus Löschen", DELETE_HAUS);
+				maklerMenu.addEntry("Wohnung Löschen", DELETE_WOHNUNG);
 				maklerMenu.addEntry("Zurück zum Hauptmenü", BACK);
 				
 				//Verarbeite Eingabe
@@ -489,54 +491,216 @@ public class Main {
 
 	
 	public static boolean maklerLogin(){
-	
+		boolean result = false;
 		String eingabe_login = FormUtil.readString("Bitte login eingeben");
 		String eingabe_password = FormUtil.readString("Bitte password eingeben");
 		
 		Makler m = Makler.load_from_login(eingabe_login);
+
 		
-		System.out.println(m.getName());
-		System.out.println(m.getAddress());
-		System.out.println(m.getLogin());
-		System.out.println(m.getPassword());
-		
-		/** ToDo #####################################################################################################################################
-		 * ###########################################################################################################################################
-		 * 
-		 * Der vergleich geht nicht obwohl das Passwort wirhctig ist
-		 * 
-		 */
 		String user_pass = m.getPassword();
+		
+		//System.err.println(user_pass + "-" + eingabe_password);
+		
 		if( user_pass.equals(eingabe_password) ) {
-			return true;
+			result = true;
 		}else{
-			return false;
+			result = false;
 		}
+		return result;
 
 	}
 	
 	public static void newHaus() {		
-		System.out.println("noch nicht vorhanden");
+		Haus w = new Haus();
+		
+
+		w.setId_makler(FormUtil.readInt("Markler ID"));
+		w.setOrt(FormUtil.readString("ort"));
+		w.setPlz(FormUtil.readString("plz"));
+		w.setStrasse(FormUtil.readString("strasse"));
+		w.setHaus_nr(FormUtil.readString("Haus Nr"));
+		w.setFlaeche(FormUtil.readInt("Fläche"));
+		w.setStockwerk(FormUtil.readInt("Stockwerk"));
+		w.setKaufpreis(FormUtil.readInt("kaufpreis"));
+		w.setGarten(FormUtil.readInt("garten"));
+
+		
+		w.save();
+		
+		System.out.println("Haus mit der ID "+w.getId()+" wurde erzeugt.");
+		//System.err.println("noch nicht vorhanden");
 	}
 	
 	public static void newWohnung() {
-		System.out.println("noch nicht vorhanden");
+		Wohnung w = new Wohnung();
+		
+
+		w.setId_makler(FormUtil.readInt("Markler ID"));
+		w.setOrt(FormUtil.readString("ort"));
+		w.setPlz(FormUtil.readString("plz"));
+		w.setStrasse(FormUtil.readString("strasse"));
+		w.setHaus_nr(FormUtil.readString("Haus Nr"));
+		w.setFlaeche(FormUtil.readInt("Fläche"));
+		w.setStockwerk(FormUtil.readInt("Stockwerk"));
+		w.setMietpreis(FormUtil.readInt("Mietpreis"));
+		w.setZimmer(FormUtil.readInt("Zimmer"));
+		w.setBalkon(FormUtil.readInt("Balkon"));
+		w.setEbk(FormUtil.readInt("EBK"));
+
+		
+		w.save();
+		
+		System.out.println("Wohnung mit der ID "+w.getId()+" wurde erzeugt.");
+		//System.err.println("noch nicht vorhanden");
 	}
 	
 	public static void editHaus() {		
-		System.out.println("noch nicht vorhanden");
+		Haus haus_old = new Haus();
+		//Wohnung wohnung_new = new Wohnung();
+		
+		System.out.println("Welches Haus wollen Sie bearbeiten?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Haus> haus_alle = Haus.load_all_haus();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Haus haus_single : haus_alle){
+			System.out.println("[" + haus_single.getId() + "] " + haus_single.getStrasse() + " " + haus_single.getHaus_nr());
+		}
+		
+		int wahl = FormUtil.readInt("Nr.");
+		
+		if(wahl != 0){
+			haus_old = Haus.load(wahl);
+
+			haus_old.setId(haus_old.getId());
+			
+			System.out.println("Geben Sie den neuen Makler an:" + haus_old.getId_makler());
+			haus_old.setId_makler(FormUtil.readInt("Makler ID"));
+			System.out.println("Geben Sie den neuen Ort an:" + haus_old.getOrt());
+			haus_old.setOrt(FormUtil.readString("Ort"));
+			System.out.println("Geben Sie die neue PLZ an:" + haus_old.getPlz());
+			haus_old.setPlz(FormUtil.readString("PLZ"));
+			System.out.println("Geben Sie die neue Strasse an:" + haus_old.getStrasse());
+			haus_old.setStrasse(FormUtil.readString("Strasse"));
+			System.out.println("Geben Sie die neue HausNr an:" + haus_old.getHaus_nr());
+			haus_old.setHaus_nr(FormUtil.readString("HausNr"));
+			System.out.println("Geben Sie deie neue Fläche an:" + haus_old.getFlaeche());
+			haus_old.setFlaeche(FormUtil.readInt("Fläche"));
+			System.out.println("Geben Sie das neue Stockwerkn:" + haus_old.getStockwerk());
+			haus_old.setStockwerk(FormUtil.readInt("Stockwerk"));
+			System.out.println("Geben Sie den neuen Kaufpreis an:" + haus_old.getKaufpreis());
+			haus_old.setKaufpreis(FormUtil.readInt("Kaufpreis"));
+			System.out.println("Geben Sie die neuen Zimmer an:" + haus_old.getGarten());
+			haus_old.setGarten(FormUtil.readInt("Zimmer"));
+
+			/**
+			 * ToDo
+			 */
+			//System.err.println(wohnung_old.getId() + "-" +wohnung_old.getIdWohnung());
+			
+			haus_old.save();
+			
+			System.out.println("Haus mit der ID "+haus_old.getId()+" wurde geupdatet.");
+		}else {
+			System.out.println("Keine Haus wurde bearbeitet");
+		}
+		//System.err.println("noch nicht vorhanden");
 	}
 	
 	public static void editWohnung() {
-		System.out.println("noch nicht vorhanden");
+		Wohnung wohnung_old = new Wohnung();
+		//Wohnung wohnung_new = new Wohnung();
+		
+		System.out.println("Welche Wohnung wollen Sie bearbeiten?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Wohnung> wohnung_alle = Wohnung.load_all_wohnungen();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Wohnung wohnung_single : wohnung_alle){
+			System.out.println("[" + wohnung_single.getId() + "] " + wohnung_single.getStrasse() + " " + wohnung_single.getHaus_nr());
+		}
+		
+		int wahl = FormUtil.readInt("Nr.");
+		
+		if(wahl != 0){
+			wohnung_old = Wohnung.load(wahl);
+
+			wohnung_old.setId(wohnung_old.getId());
+			
+			System.out.println("Geben Sie den neuen Makler an:" + wohnung_old.getId_makler());
+			wohnung_old.setId_makler(FormUtil.readInt("Makler ID"));
+			System.out.println("Geben Sie den neuen Ort an:" + wohnung_old.getOrt());
+			wohnung_old.setOrt(FormUtil.readString("Ort"));
+			System.out.println("Geben Sie die neue PLZ an:" + wohnung_old.getPlz());
+			wohnung_old.setPlz(FormUtil.readString("PLZ"));
+			System.out.println("Geben Sie die neue Strasse an:" + wohnung_old.getStrasse());
+			wohnung_old.setStrasse(FormUtil.readString("Strasse"));
+			System.out.println("Geben Sie die neue HausNr an:" + wohnung_old.getHaus_nr());
+			wohnung_old.setHaus_nr(FormUtil.readString("HausNr"));
+			System.out.println("Geben Sie deie neue Fläche an:" + wohnung_old.getFlaeche());
+			wohnung_old.setFlaeche(FormUtil.readInt("Fläche"));
+			System.out.println("Geben Sie das neue Stockwerkn:" + wohnung_old.getStockwerk());
+			wohnung_old.setStockwerk(FormUtil.readInt("Stockwerk"));
+			System.out.println("Geben Sie den neuen Mietpreis an:" + wohnung_old.getMietpreis());
+			wohnung_old.setMietpreis(FormUtil.readInt("Mietpreis"));
+			System.out.println("Geben Sie die neuen Zimmer an:" + wohnung_old.getZimmer());
+			wohnung_old.setZimmer(FormUtil.readInt("Zimmer"));
+			System.out.println("Geben Sie den neuen Balkon an:" + wohnung_old.getBalkon());
+			wohnung_old.setBalkon(FormUtil.readInt("Balkon"));
+			System.out.println("Geben Sie den neuen EBK an:" + wohnung_old.getEbk());
+			wohnung_old.setEbk(FormUtil.readInt("EBK"));
+
+			/**
+			 * ToDo
+			 */
+			//System.err.println(wohnung_old.getId() + "-" +wohnung_old.getIdWohnung());
+			
+			wohnung_old.save();
+			
+			System.out.println("Wohnung mit der ID "+wohnung_old.getId()+" wurde geupdatet.");
+		}else {
+			System.out.println("Keine Wohnung wurde bearbeitet");
+		}
+		//System.err.println("noch nicht vorhanden");
 	}
 	
 	public static void deleteHaus() {		
-		System.out.println("noch nicht vorhanden");
+		System.out.println("Welches Haus wollen Sie löschen?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Haus> haus_alle = Haus.load_all_haus();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Haus haus_single : haus_alle){
+			System.out.println("[" + haus_single.getId() + "] " + haus_single.getStrasse() + " " + haus_single.getHaus_nr());
+		}
+		
+		int wahl = FormUtil.readInt("Nr.");
+		
+		Haus.delete(wahl);
 	}
 	
 	public static void deleteWohnung() {
-		System.out.println("noch nicht vorhanden");
+		System.out.println("Welche Wohnung wollen Sie löschen?");
+		
+		// läd eine Liste aller AMkler
+		ArrayList<Wohnung> wohnung_alle = Wohnung.load_all_wohnungen();
+		
+		// Liste der Makler ausgeben
+		System.out.println("[0] Abbrechen");
+		for(Wohnung wohnung_single : wohnung_alle){
+			System.out.println("[" + wohnung_single.getId() + "] " + wohnung_single.getStrasse() + " " + wohnung_single.getHaus_nr());
+		}
+		
+		int wahl = FormUtil.readInt("Nr.");
+		
+		Wohnung.delete(wahl);
 	}
 	
 

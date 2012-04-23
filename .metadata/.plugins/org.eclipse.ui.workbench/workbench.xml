@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="19" version="2.0">
 <workbenchAdvisor/>
-<window height="971" maximized="true" width="1489" x="169" y="55">
+<window height="874" width="1062" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -17,6 +17,8 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="152" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.PropertiesFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -29,26 +31,40 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Vertrag.java" partName="Vertrag.java" path="/Users/artur/Documents/Studium/Master/DIS/Übung/workspace/Aufgabe2/src/de/dis2011/data/Vertrag.java" title="Vertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Vertrag.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Aufgabe2/src/de/dis2011/data/Vertrag.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/Users/artur/Dropbox/Master/DIS/Übung/workspace/Aufgabe2/src/de/dis2011/Main.java" title="Main.java" tooltip="Aufgabe2/src/de/dis2011/Main.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Aufgabe2/src/de/dis2011/Main.java"/>
+<editorState selectionHorizontalPixel="16" selectionLength="0" selectionOffset="3045" selectionTopPixel="8839"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Immobilie.java" partName="Immobilie.java" path="/Users/artur/Dropbox/Master/DIS/Übung/workspace/Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java" title="Immobilie.java" tooltip="Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5111" selectionTopPixel="3184"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Wohnung.java" partName="Wohnung.java" path="/Users/artur/Dropbox/Master/DIS/Übung/workspace/Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java" title="Wohnung.java" tooltip="Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="258" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Makler.java" partName="Makler.java" path="/Users/artur/Dropbox/Master/DIS/Übung/workspace/Aufgabe2/src/de/dis2011/data/Makler.java" title="Makler.java" tooltip="Aufgabe2/src/de/dis2011/data/Makler.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Aufgabe2/src/de/dis2011/data/Makler.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="627" selectionOffset="2342" selectionTopPixel="960"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
-<view IMemento.internal.id="org.eclipse.jdt.ui.JavaSearchResultPage" org.eclipse.jdt.search.resultpage.grouping="3" org.eclipse.jdt.search.resultpage.limit="1000" org.eclipse.jdt.search.resultpage.limit_enabled="TRUE" org.eclipse.jdt.search.resultpage.sorting="1" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Warnings (2 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -57,9 +73,6 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
-</view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1334174994052">
@@ -89,6 +102,9 @@
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="org.eclipse.pde.runtime.LogView" partName="Error Log">
 <viewState activate="true" allSessions="true" column2="300" column3="150" column4="150" error="true" groupBy="0" info="true" limit="50" ok="true" orderType="2" orderValue="-1" show_filter_text="true" useLimit="true" warning="true"/>
@@ -149,13 +165,13 @@
 <perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.pde.runtime.LogView"/>
 <view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
@@ -180,8 +196,8 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.13086075" ratioLeft="187" ratioRight="1242" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.78244275" ratioLeft="615" ratioRight="171" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.14654654" ratioLeft="244" ratioRight="1421" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.7951654" ratioLeft="625" ratioRight="161" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -223,173 +239,163 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Vertrag.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Kaufvertrag.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Aufgabe2/lib\/db2jcc.jar&lt;com.ibm.db2.jcc.b(jg.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Aufgabe2/src/SQL Tables"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Makler.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Mietvertrag.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2_Tien/src/de/dis2011/data/Vertrag.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/Menu.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Vertrag.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Person.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" path="/Aufgabe2/src/db2.properties"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/Menu.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/FormUtil.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/DB2ConnectionManager.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/blubb/src/main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/Vertrag.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java"/>
 </editors>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="366" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14427" y="0"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="3647" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="3005" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="798" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="13526" y="11"/>
 </item>
-<item historyLabel="Kaufvertrag.java" index="1">
-<position info="not_deleted" x="1979" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="15708" y="0"/>
 </item>
-<item historyLabel="Kaufvertrag.java" index="1">
-<position/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14134" y="0"/>
 </item>
-<item historyLabel="Kaufvertrag.java" index="1">
-<position/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="2446" y="0"/>
 </item>
-<item historyLabel="Makler.java" index="3">
-<position info="not_deleted" x="4725" y="22"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="1401" y="0"/>
 </item>
-<item historyLabel="Kaufvertrag.java" index="1">
-<position info="not_deleted" x="3023" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2169" y="0"/>
 </item>
-<item historyLabel="Mietvertrag.java" index="4">
-<position info="not_deleted" x="3304" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14134" y="0"/>
 </item>
-<item historyLabel="Kaufvertrag.java" index="1">
-<position info="not_deleted" x="0" y="3103"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="2446" y="0"/>
 </item>
-<item historyLabel="Mietvertrag.java" index="4">
-<position info="not_deleted" x="2657" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2169" y="0"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="3647" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="2446" y="0"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="1409" y="0"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="2883" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="1798" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14135" y="0"/>
 </item>
-<item historyLabel="Makler.java" index="3">
-<position info="not_deleted" x="4725" y="22"/>
-</item>
-<item historyLabel="Makler.java" index="3">
-<position info="not_deleted" x="1280" y="1059"/>
-</item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="941" y="18"/>
-</item>
-<item historyLabel="Main.java" index="2">
-<position/>
-</item>
-<item historyLabel="Main.java" index="2">
-<position/>
-</item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="2689" y="0"/>
-</item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="1904" y="16"/>
-</item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="5115" y="0"/>
-</item>
-<item historyLabel="Vertrag.java" index="5">
+<item historyLabel="jg.class" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="941" y="18"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="6015" y="26"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="5324" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="3538" y="20"/>
 </item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="473" y="13"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="6015" y="26"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="5324" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="5583" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="0">
-<position info="not_deleted" x="1126" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="6015" y="26"/>
 </item>
-<item historyLabel="Menu.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14135" y="0"/>
 </item>
-<item historyLabel="Main.java" index="2">
-<position info="not_deleted" x="5337" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="6015" y="26"/>
 </item>
-<item historyLabel="Menu.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="3563" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="6015" y="26"/>
 </item>
-<item historyLabel="Person.java" index="8">
-<position info="not_deleted" x="173" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="1417" y="13"/>
 </item>
-<item historyLabel="Vertrag.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="3563" y="0"/>
 </item>
-<item historyLabel="db2.properties" index="9">
-<position info="not_deleted" x="104" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="14135" y="0"/>
 </item>
-<item historyLabel="Main.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="15837" y="0"/>
 </item>
-<item historyLabel="Menu.java" index="11">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="SQL Tables" index="4">
+<position info="not_deleted" x="7352" y="0"/>
 </item>
-<item historyLabel="FormUtil.java" index="12">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="15837" y="0"/>
 </item>
-<item historyLabel="db2.properties" index="9">
-<position info="not_deleted" x="104" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="1715" y="0"/>
 </item>
-<item historyLabel="Vertrag.java" index="7">
-<position info="not_deleted" x="1574" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="3563" y="0"/>
 </item>
-<item historyLabel="db2.properties" index="9">
-<position info="not_deleted" x="104" y="0"/>
+<item historyLabel="Makler.java" index="5">
+<position info="not_deleted" x="2972" y="858"/>
 </item>
-<item historyLabel="DB2ConnectionManager.java" index="13">
-<position info="not_deleted" x="1035" y="0"/>
+<item historyLabel="Makler.java" index="5">
+<position info="not_deleted" x="2342" y="627"/>
 </item>
-<item historyLabel="main.java" index="14">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2309" y="642"/>
 </item>
-<item historyLabel="Main.java" index="15">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="5222" y="0"/>
 </item>
-<item historyLabel="Main.java" index="15">
-<position info="not_deleted" x="253" y="4"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2401" y="15"/>
 </item>
-<item historyLabel="Main.java" index="15">
-<position info="not_deleted" x="316" y="4"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="5222" y="0"/>
 </item>
-<item historyLabel="Main.java" index="15">
-<position info="not_deleted" x="913" y="0"/>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2401" y="15"/>
 </item>
-<item historyLabel="main.java" index="14">
-<position info="not_deleted" x="127" y="0"/>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="5222" y="0"/>
 </item>
-<item active="true" historyLabel="Vertrag.java" index="16">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="16652" y="0"/>
+</item>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="5176" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="4969" y="0"/>
+</item>
+<item historyLabel="Immobilie.java" index="1">
+<position info="not_deleted" x="2889" y="0"/>
+</item>
+<item historyLabel="Wohnung.java" index="2">
+<position info="not_deleted" x="258" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="4969" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="12154" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="2201" y="18"/>
+</item>
+<item active="true" historyLabel="Immobilie.java" index="6">
+<position info="not_deleted" x="2889" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -408,50 +414,50 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="SQL_Tabellen.sql" tooltip="Aufgabe2/src/SQL_Tabellen.sql">
+<persistable path="/Aufgabe2/src/SQL_Tabellen.sql"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SQL Tables" tooltip="Aufgabe2/src/SQL Tables">
+<persistable path="/Aufgabe2/src/SQL Tables"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="jg.class" tooltip="com.ibm.db2.jcc.b.jg">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Aufgabe2/lib\/db2jcc.jar&lt;com.ibm.db2.jcc.b(jg.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mietvertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/vertrag/Mietvertrag.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/vertrag/Mietvertrag.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Makler.java" tooltip="Aufgabe2/src/de/dis2011/data/Makler.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/Makler.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Wohnung.java" tooltip="Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/immobilien/Wohnung.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Immobilie.java" tooltip="Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/immobilien/Immobilie.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Haus.java" tooltip="Aufgabe2/src/de/dis2011/data/immobilien/Haus.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/immobilien/Haus.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Menu.java" tooltip="Aufgabe2/src/de/dis2011/Menu.java">
+<persistable path="/Aufgabe2/src/de/dis2011/Menu.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="Aufgabe2/src/de/dis2011/Main.java">
+<persistable path="/Aufgabe2/src/de/dis2011/Main.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Immobilie.java" tooltip="Aufgabe2/src/de/dis2011/data/Immobilie.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/Immobilie.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Kaufvertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Kaufvertrag.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/Kaufvertrag.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mietvertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Mietvertrag.java">
+<persistable path="/Aufgabe2/src/de/dis2011/data/Mietvertrag.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Vertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Vertrag.java">
 <persistable path="/Aufgabe2/src/de/dis2011/data/Vertrag.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="main.java" tooltip="blubb/src/main.java">
 <persistable path="/blubb/src/main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DB2ConnectionManager.java" tooltip="Aufgabe2/src/de/dis2011/data/DB2ConnectionManager.java">
-<persistable path="/Aufgabe2/src/de/dis2011/data/DB2ConnectionManager.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FormUtil.java" tooltip="Aufgabe2/src/de/dis2011/FormUtil.java">
-<persistable path="/Aufgabe2/src/de/dis2011/FormUtil.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="Aufgabe2/src/de/dis2011/Main.java">
-<persistable path="/Aufgabe2/src/de/dis2011/Main.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" name="db2.properties" tooltip="Aufgabe2/src/db2.properties">
-<persistable path="/Aufgabe2/src/db2.properties"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Person.java" tooltip="Aufgabe2/src/de/dis2011/data/Person.java">
-<persistable path="/Aufgabe2/src/de/dis2011/data/Person.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Menu.java" tooltip="Aufgabe2/src/de/dis2011/Menu.java">
-<persistable path="/Aufgabe2/src/de/dis2011/Menu.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mietvertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Mietvertrag.java">
-<persistable path="/Aufgabe2/src/de/dis2011/data/Mietvertrag.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Vertrag.java" tooltip="Aufgabe2_Tien/src/de/dis2011/data/Vertrag.java">
-<persistable path="/Aufgabe2_Tien/src/de/dis2011/data/Vertrag.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Kaufvertrag.java" tooltip="Aufgabe2_Tien/src/de/dis2011/data/Kaufvertrag.java">
-<persistable path="/Aufgabe2_Tien/src/de/dis2011/data/Kaufvertrag.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Makler.java" tooltip="Aufgabe2/src/de/dis2011/data/Makler.java">
-<persistable path="/Aufgabe2/src/de/dis2011/data/Makler.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Kaufvertrag.java" tooltip="Aufgabe2/src/de/dis2011/data/Kaufvertrag.java">
-<persistable path="/Aufgabe2/src/de/dis2011/data/Kaufvertrag.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Menu.java" tooltip="Aufgabe2_Tien/src/de/dis2011/Menu.java">
-<persistable path="/Aufgabe2_Tien/src/de/dis2011/Menu.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="Aufgabe2_Tien/src/de/dis2011/Main.java">
-<persistable path="/Aufgabe2_Tien/src/de/dis2011/Main.java"/>
 </file>
 </mruList>
 </workbench>

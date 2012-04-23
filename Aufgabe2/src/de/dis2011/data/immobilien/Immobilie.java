@@ -76,6 +76,76 @@ public class Immobilie {
 		this.flaeche = flaeche;
 	}
 	
+	
+	/**
+	 * LŠdt einen Makler aus der Datenbank
+	 * @param id ID des zu ladenden Maklers
+	 * @return Makler-Instanz
+	 */
+	public static Wohnung loadImmobilie(int id) {
+		try {
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+
+			// Erzeuge Anfrage
+			String selectSQL = "SELECT * FROM immobilien WHERE id = ?";
+			PreparedStatement pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, id);
+
+			// FŸhre Anfrage aus
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Wohnung ts = new Wohnung();
+				ts.setId(rs.getInt("id"));
+				ts.setId_makler(rs.getInt("id_makler"));
+				ts.setOrt(rs.getString("ort"));
+				ts.setPlz(rs.getString("plz"));
+				ts.setStrasse(rs.getString("strasse"));
+				ts.setHaus_nr(rs.getString("haus_nr"));
+				ts.setFlaeche(rs.getInt("flaeche"));
+				
+				System.err.println(ts.getId() + " " + ts.getId_makler());
+				
+				rs.close();
+				pstmt.close();
+				return ts;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Lšscht einen Makler
+	 * @param int die ID einer Maklers
+	 */
+	public static void deleteImmobilie(int id) {
+		try{
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+						
+			// Erzeuge Anfrage
+			String deleteSQL = "DELETE FROM immobilien WHERE id = ?";
+			PreparedStatement pstmt = con.prepareStatement(deleteSQL, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, id);
+			
+			// FŸhre Anfrage aus
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			System.out.println("Immobile mit der ID " + id + " wurde gelšscht");
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+		
+	
 	/**
 	 * LŠd eine Liste aller Makler aus der Datenbank
 	 * @return Makler-Array
@@ -135,20 +205,22 @@ public class Immobilie {
 				 */
 				String insertSQL = "INSERT INTO immobilien(id_makler, ort, plz, strasse, haus_nr, flaeche) VALUES (?, ?, ?, ?, ?, ?)";
 				
-				//System.out.println("1 - bis hier hin funktioniert es");
-					PreparedStatement pstmt = con.prepareStatement(insertSQL,
-							Statement.RETURN_GENERATED_KEYS);
+				//System.err.println("1 - bis hier hin funktioniert es");
+				
+				PreparedStatement pstmt = con.prepareStatement(insertSQL,
+						Statement.RETURN_GENERATED_KEYS);
 						
 				// Setze Anfrageparameter und fC<hre Anfrage aus
 				pstmt.setInt(1, getId_makler());
 				pstmt.setString(2, getOrt());
 				pstmt.setString(3, getPlz());
-				pstmt.setString(3, getStrasse());
-				pstmt.setString(3, getHaus_nr());
-				pstmt.setInt(3, getFlaeche());
+				pstmt.setString(4, getStrasse());
+				pstmt.setString(5, getHaus_nr());
+				pstmt.setInt(6, getFlaeche());
+				//System.err.println("1.5 - bis hier hin funktioniert es");
 				pstmt.executeUpdate();
 						
-				//System.out.println("2 - bis hier hin funktioniert es");
+				//System.err.println("2 - bis hier hin funktioniert es");
 						
 				// Hole die Id des engefC<gten Datensatzes
 				ResultSet rs_vertrag = pstmt.getGeneratedKeys();
@@ -156,12 +228,28 @@ public class Immobilie {
 					setId(rs_vertrag.getInt(1));
 				}
 						
-				//System.out.println("3 - bis hier hin funktioniert es");
+				//System.err.println("3 - bis hier hin funktioniert es");
 						
 				rs_vertrag.close();
 				pstmt.close();
 						
-				//System.out.println("4 - bis hier hin funktioniert es");
+				//System.err.println("4 - bis hier hin funktioniert es");
+			}else {
+				// Falls schon eine ID vorhanden ist, mache ein Update...
+				String updateSQL = "UPDATE immobilien SET id_makler = ?, ort = ?, plz = ?, strasse = ?, haus_nr = ?, flaeche = ? WHERE id = ?";
+				PreparedStatement pstmt = con.prepareStatement(updateSQL);
+
+				// Setze Anfrage Parameter
+				pstmt.setInt(1, getId_makler());
+				pstmt.setString(2, getOrt());
+				pstmt.setString(3, getPlz());
+				pstmt.setString(4, getStrasse());
+				pstmt.setString(5, getHaus_nr());
+				pstmt.setInt(6, getFlaeche());
+				pstmt.setInt(7, getId());
+				pstmt.executeUpdate();
+				
+				pstmt.close();
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
