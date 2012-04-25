@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;SQL_Tabellen.sql&apos; to &apos;Aufgabe3/src&apos;&#x0A;- Original project: &apos;Aufgabe2&apos;&#x0A;- Destination element: &apos;Aufgabe3/src&apos;&#x0A;- Original element: &apos;SQL_Tabellen.sql&apos;" description="Copy file" destination="=Aufgabe3/src" element1="src/SQL_Tabellen.sql" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1335357800382" units="0" version="1.0"/>
+</session>
