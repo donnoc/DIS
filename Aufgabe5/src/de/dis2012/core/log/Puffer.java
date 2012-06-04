@@ -11,7 +11,6 @@ public class Puffer {
 	}
 
 	public void setStatus(int status) {
-		System.out.println("[Puffer] Puffer wurd geleert");
 		this.status = status;
 	}
 
@@ -25,7 +24,11 @@ public class Puffer {
 	}
 
 	public void setPuffer(Hashtable<Integer, Logdatensatz> puffer) {
+		System.err.println("[Puffer] Puffer wurde geleert");
 		this.puffer = puffer;
+		
+		System.err.println("[Puffer] Status wird zurückgesetzt");
+		this.status = 1;
 	}
 
 	/**

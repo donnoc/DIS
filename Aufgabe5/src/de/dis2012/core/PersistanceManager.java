@@ -104,8 +104,6 @@ public class PersistanceManager {
 //				}
 			}
 			
-			// status des Puffers wieder auf 2 Setzen
-			this.puffer.setStatus(1);
 			// puffer leeren
 			this.puffer.setPuffer(new Hashtable<Integer, Logdatensatz>());
 		}
