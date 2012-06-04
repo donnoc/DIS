@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Set;
 
 import de.dis2012.core.log.Logdatensatz;
@@ -41,7 +42,8 @@ public class PersistanceManager {
 	
 	public int beginTransaction() {
 		setTransactionId(getTransactionId()+1);
-		System.out.println("begin Transaction" + "\n" + "	with TransactionId: " + this.getTransactionId());
+		System.out.println("[PersistanceManager] begin Transaction");
+		System.out.println("[PersistanceManager] 	with TransactionId: " + this.getTransactionId());
 		return this.transactionId;
 	}
 
@@ -60,7 +62,7 @@ public class PersistanceManager {
 	public void write(int transactionId, int pageId, String data) {
 		Logdatensatz datensatz = new Logdatensatz();
 		int pufferStatus;
-		Enumeration pufferKeys;
+		Enumeration<Integer> pufferKeys;
 		
 		
 		datensatz.setTransactionId(transactionId);
@@ -101,7 +103,11 @@ public class PersistanceManager {
 //					
 //				}
 			}
-
+			
+			// status des Puffers wieder auf 2 Setzen
+			this.puffer.setStatus(1);
+			// puffer leeren
+			this.puffer.setPuffer(new Hashtable<Integer, Logdatensatz>());
 		}
 		
 
