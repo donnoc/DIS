@@ -6,6 +6,15 @@ public class Puffer {
 	Hashtable<Integer, Logdatensatz> puffer = new Hashtable<Integer, Logdatensatz>();
 	int status;
 	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		System.out.println("[Puffer] Puffer wurd geleert");
+		this.status = status;
+	}
+
 	public Puffer(){
 		// initialisiert, dass Daten in den Puffer geschrieben werden kšnnen
 		this.status = 1;
@@ -33,7 +42,7 @@ public class Puffer {
 		if(puffer.size() < 5) {
 			puffer.put(logdatensatz.getPageId(), logdatensatz);
 			System.out.println("[Puffer] Log mit PageId " + logdatensatz.getPageId() + " wurde geschrieben");
-			
+			System.out.println("[Puffer] Es befinden sich " + this.puffer.size() + " Elemente im Puffer.");
 			// gibt zurŸck, dass noch platz zum einfŸgen war
 			status = 1;
 		}else{
