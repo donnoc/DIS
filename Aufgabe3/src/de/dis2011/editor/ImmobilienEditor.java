@@ -151,6 +151,8 @@ public class ImmobilienEditor {
 				h.setKaufpreis(newKaufpreis);
 			
 			h.setGarten(newGarten);
+			
+			service.editHaus(h);
 		}
 	}
 	
@@ -247,6 +249,8 @@ public class ImmobilienEditor {
 			
 			w.setEbk(newEbk);
 			w.setBalkon(newBalkon);
+			
+			service.editWohnung(w);
 		}
 	}
 	

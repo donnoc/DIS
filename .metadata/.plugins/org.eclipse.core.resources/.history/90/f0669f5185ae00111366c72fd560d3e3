@@ -1,0 +1,33 @@
+package de.dis2012.core.log;
+
+public class Logdatensatz {
+	int sequenznummer = -1;
+	int pageId        = -1;
+	int transactionId = -1;
+	
+	public int getSequenznummer() {
+		return sequenznummer;
+	}
+
+	public void setSequenznummer(int sequenznummer) {
+		this.sequenznummer = sequenznummer;
+	}
+
+	public int getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
+	}
+	
+	public int getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(int pageId) {
+		this.pageId = pageId;
+	}
+
+	
+}

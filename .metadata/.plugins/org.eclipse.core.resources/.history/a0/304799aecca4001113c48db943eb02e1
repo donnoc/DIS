@@ -1,0 +1,48 @@
+package de.dis2012;
+
+public class PersistanceManager {
+	
+	static final private PersistanceManager persistancemanager;
+	private int transactionId = 0;
+	
+	public int getTransactionId() {
+		return transactionId;
+	}
+	
+	static {
+		try {
+			persistancemanager = new PersistanceManager();
+		}catch (Throwable e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	private PersistanceManager() {}
+	
+	static public PersistanceManager getInstance() {
+		return persistancemanager;
+	}
+	
+	public int beginTransaction() {
+		this.transactionId = this.transactionId + 1;
+		return this.transactionId;
+		System.out.println("Transactionid: " + this.transactionId);
+	}
+
+	
+	public void commit(int taid) {
+		
+	}
+	
+	public void update() {
+		
+	}
+	
+	public void delete() {
+		
+	}
+	
+	public void write(int taid, int tpageid, String data) {
+		
+	}
+}

@@ -1,0 +1,7 @@
+package de.dis2012.core.log;
+
+public class Logdatensatz {
+	int sequenznummer; 
+	int transactionId;
+	int pageId;
+}

@@ -1,0 +1,16 @@
+package de.dis2012;
+
+public class Main {
+
+	/**
+	 * Startet die Anwendung
+	 */
+	public static void main(String[] args) {
+		
+		PersistanceManager manager = PersistanceManager.getInstance();
+		
+		
+	}
+
+	
+}

@@ -1,0 +1,10 @@
+package de.dis2012;
+
+public class Client {
+	
+	public Client() {
+		
+	}
+	
+	
+}

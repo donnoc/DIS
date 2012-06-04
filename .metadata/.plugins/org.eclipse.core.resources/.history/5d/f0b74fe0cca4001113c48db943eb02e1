@@ -1,0 +1,16 @@
+package de.dis2012;
+
+public class Client {
+	private int transactionId = -1; 
+	
+	public Client() {
+		
+	}
+	
+	public void connectToPManager() {
+		PersistanceManager manager = PersistanceManager.getInstance();
+		this.transactionId = manager.beginTransaction();
+	}
+	
+	
+}

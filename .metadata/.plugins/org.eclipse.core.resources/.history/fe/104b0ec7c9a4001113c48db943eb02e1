@@ -1,0 +1,6 @@
+package de.dis2012;
+
+public class PersistanceManager {
+	
+	static final private PersistanceManager persistancemanager;
+}

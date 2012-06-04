@@ -1,5 +1,7 @@
 package de.dis2011.data;
 
+import java.util.Set;
+
 import de.dis2011.util.Helper;
 
 /**
@@ -10,6 +12,8 @@ public class Person {
 	private String vorname;
 	private String nachname;
 	private String adresse;
+	private Set<Vertrag> vertraege;
+	private Set<Immobilie> immobilie;
 	
 	public Person() {
 	}

@@ -1,0 +1,15 @@
+package de.dis2012;
+
+public class Client {
+	
+	public Client() {
+		
+	}
+	
+	private void connectToPManager() {
+		PersistanceManager manager = PersistanceManager.getInstance();
+		manager.beginTransaction();
+		
+		
+	}
+}

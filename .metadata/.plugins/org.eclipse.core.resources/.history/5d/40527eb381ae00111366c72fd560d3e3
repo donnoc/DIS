@@ -1,0 +1,20 @@
+package de.dis2012.core.log;
+
+import java.util.Hashtable;
+
+public class Puffer {
+	private Hashtable<String, Puffer> puffer = new Hashtable<String, Puffer>();
+
+	public Hashtable<String, Puffer> getPuffer() {
+		return puffer;
+	}
+
+	public void setPuffer(Hashtable<String, Puffer> puffer) {
+		this.puffer = puffer;
+	}
+	
+	public void putInPuffer(Logdatensatz logdatensatz) {
+		this.puffer.putsss(logdatensatz.pageId, logdatensatz);
+	}
+	
+}

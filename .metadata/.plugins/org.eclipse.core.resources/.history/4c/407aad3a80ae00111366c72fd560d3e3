@@ -1,0 +1,7 @@
+package de.dis2012.core.log;
+
+import java.util.Hashtable;
+
+public class Puffer {
+	Hashtable<int, Puffer> puffer;
+}

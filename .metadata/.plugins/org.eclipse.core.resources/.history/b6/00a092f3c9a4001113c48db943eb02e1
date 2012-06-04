@@ -1,0 +1,19 @@
+package de.dis2012;
+
+public class PersistanceManager {
+	
+	static final private PersistanceManager persistancemanager;
+	static {
+		try {
+			persistancemanager = new PersistanceManager();
+		}catch (Throwable e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	private PersistanceManager() {}
+	
+	static public PersistanceManager getInstance() {
+		return persistancemanager;
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;de.dis2012.Client.transactionId&apos; in &apos;de.dis2012.Client&apos;&#x0A;- Original project: &apos;Aufgabe5&apos;&#x0A;- Original element: &apos;de.dis2012.Client.transactionId&apos;&#x0A;- Getter method name: &apos;getTransactionId&apos;&#x0A;- Setter method name: &apos;setTransactionId&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;transactionId&apos;" flags="589830" getter="getTransactionId" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;de.dis2012{Client.java[Client^transactionId" insertion="1" setter="setTransactionId" stamp="1337773586644" version="1.0" visibility="1"/>
+</session>

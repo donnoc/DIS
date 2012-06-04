@@ -14,6 +14,7 @@ public abstract class Vertrag {
 	static int currentId = 0;
 	int id;
 	Person vertragspartner;
+	Makler verwalter;
 	
 	public Vertrag() {
 		this.id = currentId++;
@@ -81,5 +82,13 @@ public abstract class Vertrag {
 		}
 		
 		return true;
+	}
+	
+	public void setVerwalter(Makler verwalter) {
+		this.verwalter = verwalter;
+	}
+
+	public Makler getVerwalter() {
+		return verwalter;
 	}
 }

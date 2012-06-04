@@ -21,5 +21,7 @@
 		<mapping resource="de/dis2011/data/mapping/Person.hbm.xml" />
 		<mapping resource="de/dis2011/data/mapping/Makler.hbm.xml" />
 		<mapping resource="de/dis2011/data/mapping/Immobilie.hbm.xml" />
+		<mapping resource="de/dis2011/data/mapping/Vertrag.hbm.xml" />
+	
 	</session-factory>
 </hibernate-configuration>

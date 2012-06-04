@@ -1,0 +1,47 @@
+package de.dis2012.core.log;
+
+import java.util.Hashtable;
+
+public class Puffer {
+	Hashtable<Integer, Logdatensatz> puffer = new Hashtable<Integer, Logdatensatz>();
+	int status;
+	
+	Puffer(){
+		// initialisiert, dass Daten in den Puffer gecshrieben werden können
+		this.status = 1;
+	}
+
+	public Hashtable<Integer, Logdatensatz> getPuffer() {
+		return puffer;
+	}
+
+	public void setPuffer(Hashtable<Integer, Logdatensatz> puffer) {
+		this.puffer = puffer;
+	}
+
+	/**
+	 * putInPuffer
+	 * 
+	 * schriebt in den Puffer einen Logdatensatz und gibt eine 1 zurück, 
+	 * falls noch platz für weitere ist
+	 * @param logdatensatz
+	 * @return
+	 */
+	public int putInPuffer(Logdatensatz logdatensatz) {		
+		if(puffer.size() <= 5) {
+			puffer.put(logdatensatz.getPageId(), logdatensatz);
+			System.out.println("Log mit PageId " + logdatensatz.getPageId() + "wurde geschrieben");
+			
+			// 
+			status = 1;
+		}else{
+			System.err.println("Log ist voll");
+		}
+		
+		return this.status;
+	}
+
+
+
+	
+}

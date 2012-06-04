@@ -1,0 +1,21 @@
+package de.dis2012;
+
+import de.dis2012.core.Client;
+
+public class Main {
+
+	/**
+	 * Startet die Anwendung
+	 */
+	public static void main(String[] args) {
+		Client hans = new Client();
+		Client klaus = new Client();
+		
+		hans.connectToPManager();
+		klaus.connectToPManager();
+		
+		
+	}
+
+	
+}
