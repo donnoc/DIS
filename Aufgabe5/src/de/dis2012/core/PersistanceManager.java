@@ -84,7 +84,7 @@ public class PersistanceManager {
 				String key = String.valueOf(pufferKeys.nextElement());
 				System.out.println(
 					// wirft noch fehler aus
-					"[PersistanceManager]	key: " + key + " --> " //+ this.puffer.getPuffer().get(key).getData()
+					"[PersistanceManager]	key: " + key + " --> " + this.puffer.getPuffer().get(Integer.parseInt(key)).getData()
 				);
 				
 //				File f = new File(pageId + ".txt");

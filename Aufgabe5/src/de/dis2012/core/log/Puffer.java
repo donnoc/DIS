@@ -24,11 +24,11 @@ public class Puffer {
 	}
 
 	public void setPuffer(Hashtable<Integer, Logdatensatz> puffer) {
-		System.err.println("[Puffer] Puffer wurde geleert");
+		System.out.println("[Puffer] Puffer wurde geleert");
 		this.puffer = puffer;
 		
-		System.err.println("[Puffer] Status wird zurückgesetzt");
-		this.status = 1;
+		System.out.println("[Puffer] Status wird zurückgesetzt");
+		this.setStatus(1);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Puffer {
 			// gibt zurück, dass noch platz zum einfügen war
 			status = 1;
 		}else{
-			System.err.println("[Puffer] Puffer ist voll");
+			System.out.println("[Puffer] Puffer ist voll");
 			
 			// gibt zurück, dass keine weiteren Logdatensätze gecshrieben werden können
 			this.status = 0;

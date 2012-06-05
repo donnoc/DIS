@@ -14,13 +14,13 @@ public class Main {
 		hans.connectToPManager();
 		klaus.connectToPManager();
 		
-		hans.write(10, 10, "haaalo");
-		hans.write(25, 25, "du da");
-		hans.write(3, 3, "du da");
-		klaus.write(14, 14, "du da");
-		klaus.write(5, 5, "du da");
-		klaus.write(8, 8, "du da");
-		klaus.write(87, 87, "du da");
+		hans.write(10, 10, "zehn");
+		hans.write(25, 25, "fünfundzwanzig");
+		hans.write(3, 3, "drei");
+		klaus.write(14, 14, "vierzehn");
+		klaus.write(5, 5, "fünf");
+		klaus.write(8, 8, "acht");
+		klaus.write(87, 87, "siebenundachtzig");
 		
 
 		
