@@ -58,7 +58,12 @@ public class Puffer {
 		return this.status;
 	}
 
-
+	public void setRedo(int transactionId) {
+		
+		Logdatensatz logdatensatz = this.puffer.get(transactionId);
+		
+		logdatensatz.setRedo(1);
+	}
 
 	
 }

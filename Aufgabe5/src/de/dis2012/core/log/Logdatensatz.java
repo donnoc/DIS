@@ -4,6 +4,16 @@ public class Logdatensatz {
 	int sequenznummer;
 	int pageId;
 	int transactionId;
+	int redo= 0; // 0 kein recovery 1 redo
+	
+	public int getRedo() {
+		return redo;
+	}
+
+	public void setRedo(int redo) {
+		this.redo = redo;
+	}
+
 	String data;
 	
 	public int getSequenznummer() {

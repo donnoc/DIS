@@ -36,7 +36,7 @@ public class VertragsEditor {
 	 * Vertragsmenü
 	 */
 	public void showVertragsMenu() {
-		//Menüoptionen
+		//Menuoptionen
 		final int NEW_LEASING_CONTRACT = 0;
 		final int NEW_SALE_CONTRACT = 1;
 		final int SHOW_CONTRACTS = 2;

@@ -3,9 +3,10 @@ package de.dis2012.core;
 public class Client {
 	private int transactionId; 
 	PersistanceManager manager;
+	String clientname;
 	
-	public Client() {
-		
+	public Client(String clientname) {
+		this.clientname = clientname;
 	}
 	
 	public int getTransactionId() {
@@ -28,6 +29,11 @@ public class Client {
 		System.out.println("[Client] 	transactionId: " + transactionId);
 		System.out.println("[Client] 	pageId:        " + pageId);
 		System.out.println("[Client] 	data:         '" + data + "'");
+	}
+	
+	public void commit() {
+		manager.commit(this.getTransactionId());
+		//System.err.println(this.getTransactionId());
 	}
 
 
