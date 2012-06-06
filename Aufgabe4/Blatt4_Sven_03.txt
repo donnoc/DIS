@@ -1,0 +1,139 @@
+Isolationsstufe	 Dirty Read	 Non Repeatable Read	 Phantom
+Read Uncommitted	Ja				Ja					Ja
+Read Committed		Nein			Ja					Ja
+Repeatable Read		Nein			Nein				Ja
+Snapshot			Nein			Nein				Nein
+Serializable		Nein			Nein				Nein
+
+pw: 66kG5IY5
+
+Auto-Commit ausschalten: db2 update command options using c off
+Konfiguration db2: . /homeLocal/db2inst1/sqllib/db2profile
+Verbinden als Vsisp72: db2 connect to VSISP user vsisp72
+dann db2 attach to vsisls4 user vsisp72
+
+
+db2 terminate -> terminierung der backendprozesse + disconnect von der datenbank
+
+Aufgabenblatt 4 DIS
+
+********NEU************
+
+Aufgabe 4.1: Isolationsstufen
+
+a.) Zu Beginn ist keine Isolationsstufe gesetzt, der DEFAULT lautet aber CS.
+
+b.) Tabelle OPK angelegt mit ID und NAME
+
+c.) 
+1. connect
+2. attach
+3. autocommit off
+4. db2
+5. VALUES CURRENT ISOLATION
+6. SET CURRENT ISOLATION CS
+7. SELECT
+8. get snapshot
+
+Lock timeout (seconds)                     = 300
+Locks held by application                  = 0
+Lock waits since connect                   = 0
+Time application waited on locks (ms)      = Not Collected
+Deadlocks detected                         = Not Collected
+Lock escalations                           = 0
+Exclusive lock escalations                 = 0
+Number of Lock Timeouts since connected    = 0
+Total time UOW waited on locks (ms)        = Not Collected
+
+d.)
+db2 => get snapshot for locks for application agentid 9460
+
+            Application Lock Snapshot
+
+Snapshot timestamp                         = 2012-05-15 12.03.33.056175
+
+Application handle                         = 9460
+Application ID                             = 134.100.11.72.60073.12051509540
+Sequence number                            = 00009
+Application name                           = db2bp
+CONNECT Authorization ID                   = VSISP72
+Application status                         = UOW Waiting
+Status change time                         = Not Collected
+Application code page                      = 1208
+Locks held                                 = 0
+Total wait time (ms)                       = Not Collected
+
+
+Aufgabe 4.2: Sperrkonflikte
+
+a.)
+SELECT * FROM OPK WHERE id>5
+Datensatz wird eingefügt INSERT  .... id=20
+208 locks
+
+Application handle                         = 10766
+Application ID                             = 134.100.4.108.56820.12051520223
+Sequence number                            = 00010
+Application name                           = db2jcc_application
+CONNECT Authorization ID                   = VSISP72
+Application status                         = UOW Waiting
+Status change time                         = Not Collected
+Application code page                      = 1208
+Locks held                                 = 208
+Total wait time (ms)                       = Not Collected
+
+lock:
+List Of Locks
+ Lock Name                   = 0x02000A111D0000000000000052
+ Lock Attributes             = 0x00000000
+ Release Flags               = 0x00000008
+ Lock Count                  = 1
+ Hold Count                  = 0
+ Lock Object Name            = 29
+ Object Type                 = Row
+ Tablespace Name             = USERSPACE1
+ Table Schema                = VSISP72
+ Table Name                  = OPK
+ Mode                        = NS
+
+
+2. Anfrage der 1. Verbindung
+
+1 lock 209
+
+
+b.)
+Deadlock - Anfrage wird nicht ausgeführt?
+3 locks
+deadlock bei 2. Anfrage von 1. Verbindung - ROLLBACK
+3 locks
+eintrag von 2. Verbindung nicht mehr im TABLE
+
+c.)
+Verbindung 1:
+SELECT * FROM OPK WHERE id=1
+
+Verbindung 2:
+UPDATE OPK SET name='doreen' WHERE id=3
+
+17 locks 
+
+Anfrage von Verbindung 2 stockt??? -> deadlock + Rollback
+Datensatz wurde nicht geupdatet
+
+493 locks
+
+d.)
+Table angelegt
+
+e.)
+Verbindung 1
+SELECT * FROM MPK WHERE id=1
+
+Verbindung 2
+SELECT * FROM MPK WHERE id=1
+
+doreen ist im TABLE drin
+
+1631 locks
+

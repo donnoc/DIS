@@ -1,0 +1,111 @@
+Isolationsstufe      Dirty    Read    Non Repeatable Read      Phantom
+Read Uncommitted     Ja       Ja      Ja
+Read Committed       Nein     Ja      Ja
+Repeatable Read      Nein     Nein    Ja
+Snapshot             Nein     Nein    Nein
+Serializable         Nein     Nein    Nein
+
+pw: 66kG5IY5
+
+Auto-Commit ausschalten: db2 update command options using c off
+Konfiguration db2: . /homeLocal/db2inst1/sqllib/db2profile
+Verbinden als Vsisp72: db2 connect to VSISP user vsisp72
+
+
+Aufgabenblatt 4 DIS
+4.1 Isolationsstufe
+a.) auf CS gesetzt (DEFAULT ist CS)
+
+b.) READ ONLY
+vsispool12:  db2 +c "SELECT * FROM OPK"
+db2=> get snapshot for locks for application agentid 6914
+enthält keine Sperren 0
+
+c.) 
+SET CURRENT ISOLATION = RS
+Isolationsstufe RS
+VALUES CURRENT ISOLATION
+enthält keine Sperren 0
+
+
+
+
+4.2 Sperrkonflikte
+a.)
+Verbindung 2
+db2 => INSERT INTO OPK (id, name) VALUES (11,'Pornoralle')
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL1024N  A database connection does not exist.  SQLSTATE=08003
+
+Verbindung 1
+db2 => INSERT INTO OPK (id, name) VALUES (11,'Pornoralle')
+DB20000I  The SQL command completed successfully.
+
+b.)
+Verbindung 1
+db2 => VALUES CURRENT ISOLATION
+
+1 
+--
+RR
+
+  1 record(s) selected.
+
+db2 => SELECT * FROM OPK WHERE ID > 5
+
+ID          NAME                                                                                                                                                                                                                                                           
+----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          6 artur                                                                                                                                                                                                                                                          
+          7 stephan                                                                                                                                                                                                                                                        
+          8 michelle                                                                                                                                                                                                                                                       
+          9 vanessa                                                                                                                                                                                                                                                        
+         10 natalie                                                                                                                                                                                                                                                        
+         11 Pornoralle                                                                                                                                                                                                                                                     
+
+  6 record(s) selected.
+
+Verbindung 2
+db2 => INSERT INTO OPK (id, name) VALUES (13, 'Susi')      
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1
+
+db2 => INSERT INTO OPK (id, name) VALUES (13, 'Susi')      
+DB20000I  The SQL command completed successfully.
+
+Fazit: Susi steht mit der gleichen ID zweimal in der Datenbank
+
+
+c.)
+Verbindung 2:
+db2 => INSERT INTO OPK (id, name) VALUES (14, 'Mats')
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1:
+db2 => INSERT INTO OPK (id, name) VALUES (14, 'Mats')
+DB20000I  The SQL command completed successfully.
+
+Fazit: Mats ist zweimal mit der ID 14 enthalten
+
+d.)
+TABLE MPK eingefügt mit PRIMARY KEY id
+
+e.)
+Verbindung 2:
+db2 => UPDATE MPK SET name='jürgen' WHERE id=1
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1:
+locks finde ich wieder keine - Datensatz wurde geupdatet
+
+4.3 Deadlocks
+a.)
+Beide Verbindungen updaten die Datensätze
+Ich finde wieder keine Sperren!? :-(
+Beide Transaktion können committen
+
+
+b.)
+
+

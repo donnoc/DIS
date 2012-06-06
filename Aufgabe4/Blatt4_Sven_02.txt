@@ -1,0 +1,247 @@
+Isolationsstufe	 Dirty Read	 Non Repeatable Read	 Phantom
+Read Uncommitted	Ja				Ja					Ja
+Read Committed		Nein			Ja					Ja
+Repeatable Read		Nein			Nein				Ja
+Snapshot			Nein			Nein				Nein
+Serializable		Nein			Nein				Nein
+
+pw: 66kG5IY5
+
+Auto-Commit ausschalten: db2 update command options using c off
+Konfiguration db2: . /homeLocal/db2inst1/sqllib/db2profile
+Verbinden als Vsisp72: db2 connect to VSISP user vsisp72
+dann db2 attach to vsisls4 user vsisp72
+
+
+db2 terminate -> terminierung der backendprozesse + disconnect von der datenbank
+
+Aufgabenblatt 4 DIS
+4.1 Isolationsstufe
+a.) auf CS gesetzt (DEFAULT ist CS)
+
+b.)
+
+c.) READ ONLY
+vsispool12:  db2 +c "SELECT * FROM OPK"
+db2=> get snapshot for locks for application agentid 6914
+enthält keine Sperren 0
+
+d.) 
+SET CURRENT ISOLATION = RS
+Isolationsstufe RS
+VALUES CURRENT ISOLATION
+enthält keine Sperren 0
+
+
+
+
+4.2 Sperrkonflikte
+a.)
+Verbindung 2
+db2 => INSERT INTO OPK (id, name) VALUES (11,'Pornoralle')
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL1024N  A database connection does not exist.  SQLSTATE=08003
+
+Verbindung 1
+db2 => INSERT INTO OPK (id, name) VALUES (11,'Pornoralle')
+DB20000I  The SQL command completed successfully.
+
+b.)
+Verbindung 1
+db2 => VALUES CURRENT ISOLATION
+
+1 
+--
+RR
+
+  1 record(s) selected.
+
+db2 => SELECT * FROM OPK WHERE ID > 5
+
+ID          NAME                                                                                                                                                                                                                                                           
+----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          6 artur                                                                                                                                                                                                                                                          
+          7 stephan                                                                                                                                                                                                                                                        
+          8 michelle                                                                                                                                                                                                                                                       
+          9 vanessa                                                                                                                                                                                                                                                        
+         10 natalie                                                                                                                                                                                                                                                        
+         11 Pornoralle                                                                                                                                                                                                                                                     
+
+  6 record(s) selected.
+
+Verbindung 2
+db2 => INSERT INTO OPK (id, name) VALUES (13, 'Susi')      
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1
+
+db2 => INSERT INTO OPK (id, name) VALUES (13, 'Susi')      
+DB20000I  The SQL command completed successfully.
+
+Fazit: Susi steht mit der gleichen ID zweimal in der Datenbank
+
+
+c.)
+Verbindung 2:
+db2 => INSERT INTO OPK (id, name) VALUES (14, 'Mats')
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1:
+db2 => INSERT INTO OPK (id, name) VALUES (14, 'Mats')
+DB20000I  The SQL command completed successfully.
+
+Fazit: Mats ist zweimal mit der ID 14 enthalten
+
+d.)
+TABLE MPK eingefügt mit PRIMARY KEY id
+
+e.)
+Verbindung 2:
+db2 => UPDATE MPK SET name='jürgen' WHERE id=1
+DB20000I  The SQL command completed successfully.
+
+Verbindung 1:
+locks finde ich wieder keine - Datensatz wurde geupdatet
+
+4.3 Deadlocks
+a.)
+Beide Verbindungen updaten die Datensätze
+Ich finde wieder keine Sperren!? :-(
+Beide Transaktion können committen
+
+
+b.)
+
+
+
+
+
+********NEU************
+
+Aufgabe 4.1: Isolationsstufen
+
+a.) Zu Beginn ist keine Isolationsstufe gesetzt, der DEFAULT lautet aber CS.
+
+b.) Tabelle OPK angelegt mit ID und NAME
+
+c.) 
+1. connect
+2. attach
+3. autocommit off
+4. db2
+5. VALUES CURRENT ISOLATION
+6. SET CURRENT ISOLATION CS
+7. SELECT
+8. get snapshot
+
+Lock timeout (seconds)                     = 300
+Locks held by application                  = 0
+Lock waits since connect                   = 0
+Time application waited on locks (ms)      = Not Collected
+Deadlocks detected                         = Not Collected
+Lock escalations                           = 0
+Exclusive lock escalations                 = 0
+Number of Lock Timeouts since connected    = 0
+Total time UOW waited on locks (ms)        = Not Collected
+
+d.)
+db2 => get snapshot for locks for application agentid 9460
+
+            Application Lock Snapshot
+
+Snapshot timestamp                         = 2012-05-15 12.03.33.056175
+
+Application handle                         = 9460
+Application ID                             = 134.100.11.72.60073.12051509540
+Sequence number                            = 00009
+Application name                           = db2bp
+CONNECT Authorization ID                   = VSISP72
+Application status                         = UOW Waiting
+Status change time                         = Not Collected
+Application code page                      = 1208
+Locks held                                 = 0
+Total wait time (ms)                       = Not Collected
+
+
+Aufgabe 4.2: Sperrkonflikte
+
+a.)
+Verbindung 1:
+db2 => SELECT * FROM OPK WHERE id>5
+
+ID          NAME                                                                                                                                                                                                                                                           
+----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          6 artur                                                                                                                                                                                                                                                          
+          7 stephan                                                                                                                                                                                                                                                        
+          8 michelle                                                                                                                                                                                                                                                       
+          9 vanessa                                                                                                                                                                                                                                                        
+         10 natalie                                                                                                                                                                                                                                                        
+         11 Pornoralle                                                                                                                                                                                                                                                     
+         12 Uli                                                                                                                                                                                                                                                            
+         13 Susi                                                                                                                                                                                                                                                           
+         12 Susi                                                                                                                                                                                                                                                           
+         13 Susi                                                                                                                                                                                                                                                           
+         14 Mats                                                                                                                                                                                                                                                           
+         14 Mats                                                                                                                                                                                                                                                           
+
+  12 record(s) selected.
+
+Verbindung 2:
+db2 => INSERT INTO OPK (id, name) VALUES (15, 'alf')      
+DB20000I  The SQL command completed successfully.
+
+Die Anfrage wird ausgeführt und in die Datenbank eingetragen.
+
+2. Durchgang
+Die Anfrage wird ausgeführt und in die Datenbank eingetragen.
+Nun liegt in der Datenbank zweimal die gleiche id + name
+
+b.)
+
+Verbindung 1:
+db2 => VALUES CURRENT ISOLATION
+
+1 
+--
+RR
+
+  1 record(s) selected.
+
+db2 => SELECT * FROM OPK WHERE id>5
+
+ID          NAME                                                                                                                                                                                                                                                           
+----------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          6 artur                                                                                                                                                                                                                                                          
+          7 stephan                                                                                                                                                                                                                                                        
+          8 michelle                                                                                                                                                                                                                                                       
+          9 vanessa                                                                                                                                                                                                                                                        
+         10 natalie                                                                                                                                                                                                                                                        
+         11 Pornoralle                                                                                                                                                                                                                                                     
+         12 Uli                                                                                                                                                                                                                                                            
+         13 Susi                                                                                                                                                                                                                                                           
+         12 Susi                                                                                                                                                                                                                                                           
+         13 Susi                                                                                                                                                                                                                                                           
+         14 Mats                                                                                                                                                                                                                                                           
+         14 Mats                                                                                                                                                                                                                                                           
+         15 alf                                                                                                                                                                                                                                                            
+         15 alf                                                                                                                                                                                                                                                            
+         16 ulf                                                                                                                                                                                                                                                            
+         17 donald                                                                                                                                                                                                                                                         
+         17 donald                                                                                                                                                                                                                                                         
+
+  17 record(s) selected.
+
+Verbindung 2:
+db2 => INSERT INTO OPK (id, name) VALUES (18, 'borat') 
+DB20000I  The SQL command completed successfully.
+
+Borat ist in der Datenbank drinne.
+
+Keine Sperren werden gehalten
+
+Hat sich nichts geändert nach einem commit
+
+c.)
+
+ 
