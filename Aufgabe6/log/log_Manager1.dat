@@ -1,0 +1,78 @@
+1000,1003,prepare
+1001,1003,rollback
+1000,1002,7,taid=1002, ResouceManager=0, Page=7
+1001,1002,42,taid=1002, ResouceManager=0, Page=42
+1002,1002,prepare
+1005,1002,commit
+1006,1003,0,taid=1003, ResouceManager=0, Page=0
+1007,1004,19,taid=1004, ResouceManager=0, Page=19
+1008,1004,6,taid=1004, ResouceManager=0, Page=6
+1009,1004,17,taid=1004, ResouceManager=0, Page=17
+1010,1005,15,taid=1005, ResouceManager=0, Page=15
+1011,1005,23,taid=1005, ResouceManager=0, Page=23
+1012,1005,25,taid=1005, ResouceManager=0, Page=25
+1013,1005,26,taid=1005, ResouceManager=0, Page=26
+1014,1005,38,taid=1005, ResouceManager=0, Page=38
+1015,1006,25,taid=1006, ResouceManager=0, Page=25
+1016,1006,27,taid=1006, ResouceManager=0, Page=27
+1017,1006,33,taid=1006, ResouceManager=0, Page=33
+1018,1007,2,taid=1007, ResouceManager=0, Page=2
+1019,1007,17,taid=1007, ResouceManager=0, Page=17
+1020,1007,30,taid=1007, ResouceManager=0, Page=30
+1021,1007,13,taid=1007, ResouceManager=0, Page=13
+1022,1008,15,taid=1008, ResouceManager=0, Page=15
+1023,1008,33,taid=1008, ResouceManager=0, Page=33
+1024,1008,4,taid=1008, ResouceManager=0, Page=4
+1025,1009,32,taid=1009, ResouceManager=0, Page=32
+1026,1009,20,taid=1009, ResouceManager=0, Page=20
+1027,1009,38,taid=1009, ResouceManager=0, Page=38
+1000,1001,27,taid=1001, ResouceManager=0, Page=27
+1001,1001,31,taid=1001, ResouceManager=0, Page=31
+1002,1001,rollback
+1000,1001,20,taid=1001, ResouceManager=0, Page=20
+1001,1001,36,taid=1001, ResouceManager=0, Page=36
+1002,1001,21,taid=1001, ResouceManager=0, Page=21
+1003,1001,49,taid=1001, ResouceManager=0, Page=49
+1004,1002,prepare
+1005,1002,rollback
+1000,1001,36,taid=1001, ResouceManager=0, Page=36
+1001,1001,prepare
+1003,1001,commit
+1000,1001,15,taid=1001, ResouceManager=0, Page=15
+1001,1001,35,taid=1001, ResouceManager=0, Page=35
+1002,1001,41,taid=1001, ResouceManager=0, Page=41
+1003,1002,prepare
+1004,1002,rollback
+1000,1001,30,taid=1001, ResouceManager=0, Page=30
+1001,1001,prepare
+1003,1001,commit
+1004,1002,34,taid=1002, ResouceManager=0, Page=34
+1005,1002,31,taid=1002, ResouceManager=0, Page=31
+1006,1002,27,taid=1002, ResouceManager=0, Page=27
+1007,1002,2,taid=1002, ResouceManager=0, Page=2
+1008,1003,21,taid=1003, ResouceManager=0, Page=21
+1009,1003,40,taid=1003, ResouceManager=0, Page=40
+1010,1004,30,taid=1004, ResouceManager=0, Page=30
+1011,1004,37,taid=1004, ResouceManager=0, Page=37
+1012,1004,18,taid=1004, ResouceManager=0, Page=18
+1013,1005,10,taid=1005, ResouceManager=0, Page=10
+1014,1005,44,taid=1005, ResouceManager=0, Page=44
+1015,1006,4,taid=1006, ResouceManager=0, Page=4
+1016,1006,20,taid=1006, ResouceManager=0, Page=20
+1017,1007,16,taid=1007, ResouceManager=0, Page=16
+1000,1001,17,taid=1001, ResouceManager=0, Page=17
+1001,1001,12,taid=1001, ResouceManager=0, Page=12
+1000,1002,36,taid=1002, ResouceManager=0, Page=36
+1001,1002,prepare
+1003,1002,commit
+1004,1003,31,taid=1003, ResouceManager=0, Page=31
+1005,1003,9,taid=1003, ResouceManager=0, Page=9
+1000,1001,28,taid=1001, ResouceManager=0, Page=28
+1001,1001,25,taid=1001, ResouceManager=0, Page=25
+1002,1001,12,taid=1001, ResouceManager=0, Page=12
+1003,1001,14,taid=1001, ResouceManager=0, Page=14
+1004,1001,28,taid=1001, ResouceManager=0, Page=28
+1005,1001,prepare
+1010,1001,commit
+1011,1002,5,taid=1002, ResouceManager=0, Page=5
+1012,1002,27,taid=1002, ResouceManager=0, Page=27
