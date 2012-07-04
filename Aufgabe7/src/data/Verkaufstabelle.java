@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class Verkaufstabelle {
 	private int _id;
 	private int _shopid = 0;
@@ -104,31 +105,67 @@ public class Verkaufstabelle {
 		return _umsatz;
 	}
 
-	public void save() {
+	private int proof(int shopID, int artikelID) {
 		// Hole Verbindung
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
+		int anzahl = 0;
+		
+		try{
+			String selectSQL = "SELECT COUNT(*) AS ANZ FROM verkaufstabelle WHERE shopid = ? AND artikelID = ?";
+			
+			PreparedStatement pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, shopID);
+			pstmt.setInt(2, artikelID);
+			
+			ResultSet rs = pstmt.executeQuery();
 
-		try {
-			// Achtung, hier wird noch ein Parameter mitgegeben,
-			// damit spaeter generierte IDs zurC<ckgeliefert werden!
-			// ID SHOPID ARTIKELID ZEIT ANZAHL UMSATZ
-			String insertSQL = "INSERT INTO VSISP72.verkaufstabelle(SHOPID, ARTIKELID, ZEIT, ANZAHL, UMSATZ) VALUES (?, ?, ?, ?, ?)";
 
-			PreparedStatement pstmt = con.prepareStatement(insertSQL,
-					Statement.RETURN_GENERATED_KEYS);
+			if (rs.next()) {
+				anzahl = rs.getInt("ANZ");
 
-			// Setze Anfrageparameter und fuehre Anfrage aus
-			pstmt.setInt(1, this.get_shopid());
-			pstmt.setInt(2, this.get_artikelid());
-			pstmt.setDate(3, this.get_zeit());
-			pstmt.setInt(4, this.get_anzahl());
-			pstmt.setFloat(5, this.get_umsatz());
-			pstmt.executeUpdate();
+				rs.close();
+				pstmt.close();
 
-			pstmt.close();
-
+			}
+						
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		return anzahl;
+
+	}
+	
+	public void save() {
+		// Hole Verbindung
+		Connection con = DB2ConnectionManager.getInstance().getConnection();
+		
+		if(this.proof(this.get_shopid(), this.get_artikelid()) > 0){
+			
+
+		
+			try {
+				// Achtung, hier wird noch ein Parameter mitgegeben,
+				// damit spaeter generierte IDs zurC<ckgeliefert werden!
+				// ID SHOPID ARTIKELID ZEIT ANZAHL UMSATZ
+				String insertSQL = "INSERT INTO VSISP72.verkaufstabelle(SHOPID, ARTIKELID, ZEIT, ANZAHL, UMSATZ) VALUES (?, ?, ?, ?, ?)";
+
+				PreparedStatement pstmt = con.prepareStatement(insertSQL,
+						Statement.RETURN_GENERATED_KEYS);
+
+				// Setze Anfrageparameter und fuehre Anfrage aus
+				pstmt.setInt(1, this.get_shopid());
+				pstmt.setInt(2, this.get_artikelid());
+				pstmt.setDate(3, this.get_zeit());
+				pstmt.setInt(4, this.get_anzahl());
+				pstmt.setFloat(5, this.get_umsatz());
+				pstmt.executeUpdate();
+
+				pstmt.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//END IF
 	}
 }

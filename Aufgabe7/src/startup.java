@@ -5,7 +5,7 @@ public class startup {
 	 */
 	public static void main(String[] args) {
 
-		//ETL.readDB();
+		ETL.readDB();
 		ETL.readFile();
 	}
 
